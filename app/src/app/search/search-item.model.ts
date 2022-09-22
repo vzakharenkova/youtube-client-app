@@ -1,5 +1,5 @@
 export interface SearchItem {
-  kind: string;
+  kind: 'youtube#video';
   etag: string;
   id: string;
   snippet: Snippet;
