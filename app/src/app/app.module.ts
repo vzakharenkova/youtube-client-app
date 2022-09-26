@@ -14,6 +14,7 @@ import { SearchCardComponent } from './search/cards/search-card/search-card.comp
 import { DescriptionCardComponent } from './search/cards/description-card/description-card.component';
 import { LoginInfoComponent } from './header/login-info/login-info.component';
 import { SearchInputComponent } from './header/search-input/search-input.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,10 @@ import { SearchInputComponent } from './header/search-input/search-input.compone
     SearchCardComponent,
     DescriptionCardComponent,
     LoginInfoComponent,
-    SearchInputComponent
+    SearchInputComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, MatIconModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
