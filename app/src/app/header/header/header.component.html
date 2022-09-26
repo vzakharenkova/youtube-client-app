@@ -1,10 +1,10 @@
 <header class="header">
   <div class="header_content">
-    <img class="header_logo" src="../../../assets/logo.svg" />
+    <a class="header_link">
+      <img class="header_logo" src="../../../assets/logo.svg" />
+    </a>
     <app-search-input></app-search-input>
-    <button class="setting-btn" aria-label="settings">
-      <mat-icon class="setting-btn_icon" aria-hidden="true">tune</mat-icon>
-    </button>
+    <app-header-btn type="setting" icon="tune"></app-header-btn>
   </div>
-  <div class="header_login-info"></div>
+  <app-login-info></app-login-info>
 </header>
