@@ -1,0 +1,41 @@
+$grey: #e5e5e5;
+$blue: #2f80ed;
+$white: #ffffff;
+
+:host {
+  .header {
+    background-color: $grey;
+    width: 100%;
+    height: 100px;
+    &_content {
+      width: 80vw;
+      height: 100%;
+      display: flex;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
+      .header_logo {
+        height: 63%;
+      }
+      app-search-input {
+        width: 40%;
+        height: 30%;
+        margin: 0 20px;
+      }
+      .setting-btn {
+        display: flex;
+        align-items: center;
+        height: 30%;
+        width: 30px;
+        border: none;
+        background-color: $blue;
+        padding: 0;
+        border-radius: 4px;
+        .setting-btn_icon {
+          margin: 0 auto;
+          color: $white;
+        }
+      }
+    }
+  }
+}
