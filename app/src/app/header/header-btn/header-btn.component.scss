@@ -3,7 +3,7 @@ $white: #ffffff;
 
 :host {
   .btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     height: 100%;
     width: 30px;
@@ -11,6 +11,7 @@ $white: #ffffff;
     background-color: $blue;
     padding: 0;
     border-radius: 4px;
+    cursor: pointer;
     .icon {
       margin: 0 auto;
       color: $white;

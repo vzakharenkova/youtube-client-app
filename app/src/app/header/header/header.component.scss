@@ -7,6 +7,7 @@ $white: #ffffff;
     background-color: $grey;
     width: 100%;
     height: 100px;
+    position: relative;
     &_content {
       width: 80vw;
       height: 100%;
@@ -14,28 +15,29 @@ $white: #ffffff;
       margin: 0 auto;
       justify-content: center;
       align-items: center;
-      .header_logo {
+      .header_link {
         height: 63%;
+        cursor: pointer;
+        .header_logo {
+          height: 100%;
+        }
       }
       app-search-input {
         width: 40%;
         height: 30%;
         margin: 0 20px;
       }
-      .setting-btn {
-        display: flex;
-        align-items: center;
+      app-header-btn {
         height: 30%;
-        width: 30px;
-        border: none;
-        background-color: $blue;
-        padding: 0;
-        border-radius: 4px;
-        .setting-btn_icon {
-          margin: 0 auto;
-          color: $white;
-        }
+        cursor: pointer;
       }
+    }
+    app-login-info {
+      position: absolute;
+      top: 35%;
+      right: 5%;
+      height: 30%;
+      cursor: pointer;
     }
   }
 }
