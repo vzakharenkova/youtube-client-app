@@ -1,7 +1,7 @@
 import { SearchItem } from './search-item.model';
 
 export interface SearchResponce {
-  kind: 'youtube#videoListResponse';
+  kind: string;
   etag: string;
   pageInfo: {
     totalResults: number;
