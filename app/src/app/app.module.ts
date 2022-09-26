@@ -12,6 +12,8 @@ import { SearchResultsComponent } from './search/search-results/search-results.c
 import { SettingsComponent } from './header/settings/settings.component';
 import { SearchCardComponent } from './search/cards/search-card/search-card.component';
 import { DescriptionCardComponent } from './search/cards/description-card/description-card.component';
+import { LoginInfoComponent } from './header/login-info/login-info.component';
+import { SearchInputComponent } from './header/search-input/search-input.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { DescriptionCardComponent } from './search/cards/description-card/descri
     SearchResultsComponent,
     SettingsComponent,
     SearchCardComponent,
-    DescriptionCardComponent
+    DescriptionCardComponent,
+    LoginInfoComponent,
+    SearchInputComponent
   ],
   imports: [
     BrowserModule,
