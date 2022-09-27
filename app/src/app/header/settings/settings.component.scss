@@ -1,0 +1,33 @@
+$dark-grey: #929292;
+$grey: #e5e5e5;
+$blue: #2f80ed;
+
+:host {
+  .settings {
+    background-color: $grey;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    align-items: center;
+    .settings-title {
+      margin-right: 20px;
+      color: $dark-grey;
+    }
+    .settings-type {
+      color: $blue;
+    }
+    .settings-type.link {
+      margin-right: 25px;
+      text-decoration: underline;
+    }
+    .settings-item {
+      display: flex;
+      align-items: flex-end;
+      .settings-input {
+        margin-left: 20px;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+}

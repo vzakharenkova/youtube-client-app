@@ -14,7 +14,5 @@ export class HeaderBtnComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.type);
-  }
+  ngOnInit(): void {}
 }

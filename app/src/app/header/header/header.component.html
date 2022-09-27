@@ -4,7 +4,8 @@
       <img class="header_logo" src="../../../assets/logo.svg" />
     </a>
     <app-search-input></app-search-input>
-    <app-header-btn type="setting" icon="tune"></app-header-btn>
+    <app-header-btn type="setting" icon="tune" (click)="this.onToggleSettings()"></app-header-btn>
   </div>
   <app-login-info></app-login-info>
+  <app-settings *ngIf="this.settinsIsOpend"></app-settings>
 </header>
