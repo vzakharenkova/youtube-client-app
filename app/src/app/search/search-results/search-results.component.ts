@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { mockedData } from 'src/app/mocked-data';
+import { Component, Input, OnInit } from '@angular/core';
+// import { mockedData } from 'src/app/mocked-data';
 import { SearchItem } from '../search-item.model';
 
 @Component({
@@ -8,10 +8,12 @@ import { SearchItem } from '../search-item.model';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit {
-  // videoResult: SearchItem[] = [];
-  videoResult: SearchItem[] = mockedData.items;
+  @Input() videoResult: SearchItem[] = [];
+  // videoResult: SearchItem[] = mockedData.items;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.videoResult);
+  }
 }

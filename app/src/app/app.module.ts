@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HeaderBtnComponent } from './header/header-btn/header-btn.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,14 @@ import { MatButtonModule } from '@angular/material/button';
     SearchInputComponent,
     HeaderBtnComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatIconModule, MatCardModule, MatButtonModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
