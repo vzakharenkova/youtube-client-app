@@ -1,3 +1,3 @@
-<app-header (clickSearch)="onASearched($event)"></app-header>
-<app-search-results [videoResult]="videoResult"></app-search-results>
+<app-header (clickSort)="onASorted($event)" (clickSearch)="onASearched($event)"></app-header>
+<app-search-results [videoResult]="videoResult | filter: sortTerm"></app-search-results>
 <router-outlet></router-outlet>

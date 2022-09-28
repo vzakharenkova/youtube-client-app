@@ -9,6 +9,8 @@ import { SearchItem } from '../search-item.model';
 })
 export class SearchResultsComponent implements OnInit {
   @Input() videoResult: SearchItem[] = [];
+
+  // @Input() sortTerm = '';
   // videoResult: SearchItem[] = mockedData.items;
 
   constructor() {}

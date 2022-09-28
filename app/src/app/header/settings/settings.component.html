@@ -4,6 +4,6 @@
   <a class="settings-type link" (click)="onClick('views')">count of views</a>
   <div class="settings-item">
     <label class="settings-type">by word or sentance</label>
-    <input class="settings-input" type="text" />
+    <input class="settings-input" type="text" [(ngModel)]="sortTerm" (input)="onChange()" />
   </div>
 </div>

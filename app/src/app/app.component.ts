@@ -11,7 +11,13 @@ export class AppComponent {
 
   videoResult: SearchItem[] = [];
 
+  sortTerm = '';
+
   onASearched(videoResult: SearchItem[]) {
     this.videoResult = videoResult;
+  }
+
+  onASorted(sortTerm: string) {
+    this.sortTerm = sortTerm;
   }
 }

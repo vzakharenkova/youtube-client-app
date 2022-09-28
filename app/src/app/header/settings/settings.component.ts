@@ -12,6 +12,10 @@ export class SettingsComponent implements OnInit {
 
   @Output() clickSort: EventEmitter<SearchItem[]> = new EventEmitter();
 
+  @Output() changeSort: EventEmitter<string> = new EventEmitter();
+
+  sortTerm = '';
+
   sortingOrder: 'up' | 'down' | null = null;
 
   // sortedByDate = false;
@@ -53,6 +57,10 @@ export class SettingsComponent implements OnInit {
       this.currentVideoList.sort(this.sortByViews.bind(this));
     }
     this.clickSort.emit(this.currentVideoList);
+  }
+
+  onChange() {
+    this.changeSort.emit(this.sortTerm);
   }
 
   constructor() {}
