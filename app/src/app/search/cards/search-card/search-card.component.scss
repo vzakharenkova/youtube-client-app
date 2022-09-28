@@ -1,4 +1,7 @@
 $blue: #2f80ed;
+$green: #27ae60;
+$yellow: #f2c94c;
+$red: #eb5757;
 $white: #ffffff;
 $grey: #e5e5e5;
 
@@ -8,7 +11,18 @@ mat-card {
   flex-direction: column;
   justify-content: space-between;
   background-color: $grey;
-  border-bottom: 5px solid $blue;
+  &.group-1 {
+    border-bottom: 5px solid $blue;
+  }
+  &.group-2 {
+    border-bottom: 5px solid $green;
+  }
+  &.group-3 {
+    border-bottom: 5px solid $yellow;
+  }
+  &.group-4 {
+    border-bottom: 5px solid $red;
+  }
   .video-img {
     width: 100%;
   }
@@ -36,6 +50,7 @@ mat-card {
     }
   }
 }
+
 .mat-blue {
   background-color: $blue;
   color: $white;
