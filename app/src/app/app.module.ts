@@ -19,6 +19,7 @@ import { HeaderBtnComponent } from './header/header-btn/header-btn.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { FilterPipe } from './header/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     LoginInfoComponent,
     SearchInputComponent,
     HeaderBtnComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
