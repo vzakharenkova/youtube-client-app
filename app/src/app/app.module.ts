@@ -16,6 +16,8 @@ import { LoginInfoComponent } from './header/login-info/login-info.component';
 import { SearchInputComponent } from './header/search-input/search-input.component';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderBtnComponent } from './header/header-btn/header-btn.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,7 @@ import { HeaderBtnComponent } from './header/header-btn/header-btn.component';
     SearchInputComponent,
     HeaderBtnComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatIconModule],
+  imports: [BrowserModule, AppRoutingModule, MatIconModule, MatCardModule, MatButtonModule],
   providers: [],
   bootstrap: [AppComponent],
 })
