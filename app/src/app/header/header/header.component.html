@@ -8,4 +8,8 @@
   </div>
   <app-login-info></app-login-info>
 </header>
-<app-settings *ngIf="this.settinsIsOpend"></app-settings>
+<app-settings
+  *ngIf="this.settinsIsOpend"
+  [currentVideoList]="videoResult"
+  (clickSort)="onASearched($event)"
+></app-settings>
