@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-// import { mockedData } from 'src/app/mocked-data';
 import { SearchItem } from '../search-item.model';
 
 @Component({
@@ -10,12 +9,7 @@ import { SearchItem } from '../search-item.model';
 export class SearchResultsComponent implements OnInit {
   @Input() videoResult: SearchItem[] = [];
 
-  // @Input() sortTerm = '';
-  // videoResult: SearchItem[] = mockedData.items;
-
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.videoResult);
-  }
+  ngOnInit(): void {}
 }
