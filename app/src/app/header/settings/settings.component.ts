@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SearchItem } from 'src/app/search/search-item.model';
 
+type SortingBy = 'date' | 'views' | null;
+type SortingOrder = 'up' | 'down' | null;
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -16,13 +19,9 @@ export class SettingsComponent implements OnInit {
 
   sortTerm = '';
 
-  sortingOrder: 'up' | 'down' | null = null;
+  sortingOrder: SortingOrder = null;
 
-  // sortedByDate = false;
-
-  // sortedByViews = false;
-
-  sortedBy: 'date' | 'views' | null = null;
+  sortedBy: SortingBy = null;
 
   sortByDate(v1: SearchItem, v2: SearchItem) {
     if (this.sortingOrder === 'up') {
