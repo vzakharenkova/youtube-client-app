@@ -1,4 +1,4 @@
-<mat-card class="{{ dateStatus }}">
+<mat-card [ngClass]="getClass()">
   <img class="video-img" src="{{ video.snippet.thumbnails.medium.url }}" />
   <mat-card-content>
     <div class="card-statistic-item">

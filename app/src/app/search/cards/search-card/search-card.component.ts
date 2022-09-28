@@ -11,11 +11,7 @@ export class SearchCardComponent implements OnInit {
   video!: SearchItem;
   // video: SearchItem | null = null;
 
-  dateStatus = '';
-
-  constructor() {}
-
-  ngOnInit(): void {
+  getClass() {
     const currentDate = Date.now();
     const videoDate = new Date(this.video.snippet.publishedAt);
     const gap = Math.abs(currentDate - videoDate.getTime());
@@ -26,18 +22,18 @@ export class SearchCardComponent implements OnInit {
       week: Math.abs(startDate - Date.parse('08.01.1997')),
     };
     const statusClasses = ['group-1', 'group-2', 'group-3', 'group-4'];
-
     if (gap > dateMap.halfYear) {
-      this.dateStatus = statusClasses[3];
-      return;
+      return statusClasses[3];
     } else if (gap > dateMap.month) {
-      this.dateStatus = statusClasses[2];
-      return;
+      return statusClasses[2];
     } else if (gap > dateMap.week) {
-      this.dateStatus = statusClasses[1];
-      return;
+      return statusClasses[1];
     } else {
-      this.dateStatus = statusClasses[0];
+      return statusClasses[0];
     }
   }
+
+  constructor() {}
+
+  ngOnInit(): void {}
 }
