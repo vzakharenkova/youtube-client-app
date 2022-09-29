@@ -10,28 +10,6 @@ export class SearchCardComponent implements OnInit {
   @Input()
   video!: SearchItem;
 
-  getClass() {
-    const currentDate = Date.now();
-    const videoDate = new Date(this.video.snippet.publishedAt);
-    const gap = Math.abs(currentDate - videoDate.getTime());
-    const startDate = Date.parse('01.01.1997');
-    const dateMap = {
-      halfYear: Math.abs(startDate - Date.parse('01.06.1997')),
-      month: Math.abs(startDate - Date.parse('01.02.1997')),
-      week: Math.abs(startDate - Date.parse('08.01.1997')),
-    };
-    const statusClasses = ['group-1', 'group-2', 'group-3', 'group-4'];
-    if (gap > dateMap.halfYear) {
-      return statusClasses[3];
-    } else if (gap > dateMap.month) {
-      return statusClasses[2];
-    } else if (gap > dateMap.week) {
-      return statusClasses[1];
-    } else {
-      return statusClasses[0];
-    }
-  }
-
   constructor() {}
 
   ngOnInit(): void {}
