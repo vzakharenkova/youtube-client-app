@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SearchItem } from '../../search-item.model';
+import { SearchItem } from 'src/app/models/search-item.model';
 
 @Component({
   selector: 'app-search-card',
@@ -9,7 +9,6 @@ import { SearchItem } from '../../search-item.model';
 export class SearchCardComponent implements OnInit {
   @Input()
   video!: SearchItem;
-  // video: SearchItem | null = null;
 
   getClass() {
     const currentDate = Date.now();

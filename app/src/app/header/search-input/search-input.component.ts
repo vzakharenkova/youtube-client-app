@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { mockedData } from 'src/app/mocked-data';
-import { SearchItem } from 'src/app/search/search-item.model';
+import { SearchItem } from 'src/app/models/search-item.model';
 
 @Component({
   selector: 'app-search-input',

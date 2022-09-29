@@ -19,7 +19,7 @@ import { HeaderBtnComponent } from './header/header-btn/header-btn.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { FilterPipe } from './header/filter.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
