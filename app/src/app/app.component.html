@@ -1,3 +1,5 @@
 <app-header (clickSort)="onASorted($event)" (clickSearch)="onASearched($event)"></app-header>
-<app-search-results [videoResult]="videoResult | filter: sortTerm"></app-search-results>
+<app-search-results
+  [videoResult]="videoResult | filter: [sortTerm, sortedBy, sortingOrder]"
+></app-search-results>
 <router-outlet></router-outlet>
