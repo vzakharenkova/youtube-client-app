@@ -5,9 +5,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { DirectivesModule } from 'src/app/directive/directives.module';
-// import { DateStatusDirective } from 'src/app/directive/date-status.directive';
-// import { DateStatusDirective } from 'src/app/directive/date-status.directive';
-// import { SearchResultsRoutingModule } from './search-card-routing.module';
 
 @NgModule({
   declarations: [SearchCardComponent],

@@ -16,11 +16,11 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit(): void {
     this.searchService.videos$.subscribe(
       (videos) =>
-        (this.videoResult = this.filter.transform(videos, [
-          this.searchService.sortTerm$.getValue(),
-          this.searchService.sortedBy$.getValue(),
-          this.searchService.sortingOrder$.getValue(),
-        ])),
+        (this.videoResult = this.filter.transform(videos, {
+          term: this.searchService.sortTerm$.getValue(),
+          sortingBy: this.searchService.sortedBy$.getValue(),
+          sortingOrder: this.searchService.sortingOrder$.getValue(),
+        })),
     );
   }
 

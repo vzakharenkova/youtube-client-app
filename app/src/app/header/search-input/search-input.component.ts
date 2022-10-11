@@ -9,8 +9,6 @@ import { SearchService } from 'src/app/search/search.service';
   styleUrls: ['./search-input.component.scss'],
 })
 export class SearchInputComponent implements OnInit {
-  // @Output() clickSearch: EventEmitter<SearchItem[]> = new EventEmitter();
-
   searchTerm: string = '';
 
   previousSearchTerm: string = '';
@@ -25,7 +23,6 @@ export class SearchInputComponent implements OnInit {
           item.snippet.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
           item.snippet.description.toLowerCase().includes(this.searchTerm.toLowerCase()),
       );
-      // this.clickSearch.emit(this.videoResult);
       this.searchService.changeVideos(this.videoResult);
     }
   }

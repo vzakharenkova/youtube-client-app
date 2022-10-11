@@ -16,16 +16,13 @@ import { LoginInfoComponent } from './header/login-info/login-info.component';
 import { SearchInputComponent } from './header/search-input/search-input.component';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderBtnComponent } from './header/header-btn/header-btn.component';
-// import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
-// import { DateStatusDirective } from './directive/date-status.directive';
 import { ErrorModule } from './error/error/error.module';
 import { SearchResultsModule } from './search/search-results/search-results.module';
 import { SearchCardModule } from './search/cards/search-card/search-card.module';
 import { MatCardModule } from '@angular/material/card';
-// import { SearchResultsModule } from './search/search-results/search-results.module';
 
 @NgModule({
   declarations: [
@@ -33,17 +30,13 @@ import { MatCardModule } from '@angular/material/card';
     LoginComponent,
     RegistrationComponent,
     CardCreatorComponent,
-    // ErrorComponent,
     HeaderComponent,
-    // SearchResultsComponent,
     SettingsComponent,
-    // SearchCardComponent,
     DescriptionCardComponent,
     LoginInfoComponent,
     SearchInputComponent,
     HeaderBtnComponent,
     FilterPipe,
-    // DateStatusDirective,
   ],
   imports: [
     BrowserModule,
