@@ -3,14 +3,9 @@
     <a class="header_link" routerLink="">
       <img class="header_logo" src="../../../assets/logo.svg" />
     </a>
-    <app-search-input (clickSearch)="onASearched($event)"></app-search-input>
+    <app-search-input></app-search-input>
     <app-header-btn type="setting" icon="tune" (click)="this.onToggleSettings()"></app-header-btn>
   </div>
   <app-login-info></app-login-info>
 </header>
-<app-settings
-  *ngIf="this.settinsIsOpend"
-  [currentVideoList]="videoResult"
-  (clickSort)="onASorted($event)"
-  (changeSort)="onASorted($event)"
-></app-settings>
+<app-settings *ngIf="this.settinsIsOpend"></app-settings>

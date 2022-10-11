@@ -3,7 +3,13 @@
   <a class="settings-type link" (click)="onClick('date')">date</a>
   <a class="settings-type link" (click)="onClick('views')">count of views</a>
   <div class="settings-item">
-    <label class="settings-type">by word or sentance</label>
-    <input class="settings-input" type="text" [(ngModel)]="sortTerm" (input)="onChange()" />
+    <label for="settings-input" class="settings-type">by word or sentance</label>
+    <input
+      id="settings-input"
+      class="settings-input"
+      type="text"
+      [ngModel]="sortTerm"
+      (ngModelChange)="onChange($event)"
+    />
   </div>
 </div>

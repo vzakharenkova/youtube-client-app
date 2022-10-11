@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { mockedData } from 'src/app/mocked-data';
 import { SearchItem } from 'src/app/models/search-item.model';
+import { SearchService } from 'src/app/search/search.service';
 
 @Component({
   selector: 'app-search-input',
@@ -8,7 +9,7 @@ import { SearchItem } from 'src/app/models/search-item.model';
   styleUrls: ['./search-input.component.scss'],
 })
 export class SearchInputComponent implements OnInit {
-  @Output() clickSearch: EventEmitter<SearchItem[]> = new EventEmitter();
+  // @Output() clickSearch: EventEmitter<SearchItem[]> = new EventEmitter();
 
   searchTerm: string = '';
 
@@ -24,11 +25,12 @@ export class SearchInputComponent implements OnInit {
           item.snippet.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
           item.snippet.description.toLowerCase().includes(this.searchTerm.toLowerCase()),
       );
-      this.clickSearch.emit(this.videoResult);
+      // this.clickSearch.emit(this.videoResult);
+      this.searchService.changeVideos(this.videoResult);
     }
   }
 
-  constructor() {}
+  constructor(private readonly searchService: SearchService) {}
 
   ngOnInit(): void {}
 }

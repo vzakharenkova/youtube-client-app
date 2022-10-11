@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SearchItem } from './models/search-item.model';
-import { SortingBy, SortingOrder } from './models/shared.model';
+// import { SearchItem } from './models/search-item.model';
+// import { SortingBy, SortingOrder } from './models/shared.model';
 
 @Component({
   selector: 'app-root',
@@ -10,24 +10,24 @@ import { SortingBy, SortingOrder } from './models/shared.model';
 export class AppComponent {
   title = 'app';
 
-  videoResult: SearchItem[] = [];
+  // videoResult: SearchItem[] = [];
 
-  sortTerm = '';
+  // sortTerm = '';
 
-  sortingOrder: SortingOrder = null;
+  // sortingOrder: SortingOrder = null;
 
-  sortedBy: SortingBy = null;
+  // sortedBy: SortingBy = null;
 
-  onASearched(videoResult: SearchItem[]) {
-    this.videoResult = videoResult;
-  }
+  // onASearched(videoResult: SearchItem[]) {
+  //   this.videoResult = videoResult;
+  // }
 
-  onASorted(criteria: Array<string | SortingBy | SortingOrder>) {
-    if (criteria.length === 1) {
-      this.sortTerm = <string>criteria[0];
-    } else {
-      this.sortedBy = <SortingBy>criteria[0];
-      this.sortingOrder = <SortingOrder>criteria[1];
-    }
-  }
+  // onASorted(criteria: Array<string | SortingBy | SortingOrder>) {
+  //   if (criteria.length === 1) {
+  //     this.sortTerm = <string>criteria[0];
+  //   } else {
+  //     this.sortedBy = <SortingBy>criteria[0];
+  //     this.sortingOrder = <SortingOrder>criteria[1];
+  //   }
+  // }
 }
