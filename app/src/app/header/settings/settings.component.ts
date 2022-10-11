@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SearchItem } from 'src/app/models/search-item.model';
-import { SortingBy, SortingOrder } from 'src/app/models/shared.model';
+import { SortingBy, SortingCriteria, SortingOrder } from 'src/app/models/shared.model';
 
+enum SortingType {
+  Date = 'date',
+  Views = 'views',
+}
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -11,9 +15,11 @@ export class SettingsComponent implements OnInit {
   @Input()
   currentVideoList!: SearchItem[];
 
-  @Output() clickSort: EventEmitter<[string, string]> = new EventEmitter();
+  @Output() clickSort: EventEmitter<SortingCriteria> = new EventEmitter();
 
-  @Output() changeSort: EventEmitter<string[]> = new EventEmitter();
+  @Output() changeSort: EventEmitter<SortingCriteria> = new EventEmitter();
+
+  sortingType = SortingType;
 
   sortTerm = '';
 
@@ -32,11 +38,11 @@ export class SettingsComponent implements OnInit {
 
     this.sortedBy = by;
 
-    this.clickSort.emit([this.sortedBy, this.sortingOrder]);
+    this.clickSort.emit({ sortingBy: this.sortedBy, sortingOrder: this.sortingOrder });
   }
 
   onChange() {
-    this.changeSort.emit([this.sortTerm]);
+    this.changeSort.emit({ term: this.sortTerm });
   }
 
   constructor() {}

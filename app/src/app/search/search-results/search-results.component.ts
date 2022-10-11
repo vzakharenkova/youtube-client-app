@@ -12,4 +12,8 @@ export class SearchResultsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  identify(_index: number, item: SearchItem) {
+    return item.id;
+  }
 }

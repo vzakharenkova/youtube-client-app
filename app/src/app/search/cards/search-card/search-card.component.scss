@@ -1,9 +1,4 @@
-$blue: #2f80ed;
-$green: #27ae60;
-$yellow: #f2c94c;
-$red: #eb5757;
-$white: #ffffff;
-$grey: #e5e5e5;
+@import '../../../shared/shared.scss';
 
 mat-card {
   height: 90%;

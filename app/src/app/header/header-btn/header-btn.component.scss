@@ -1,5 +1,4 @@
-$blue: #2f80ed;
-$white: #ffffff;
+@import '../../shared/shared.scss';
 
 :host {
   .btn {
@@ -12,6 +11,14 @@ $white: #ffffff;
     padding: 0;
     border-radius: 4px;
     cursor: pointer;
+    transition: $btn_transition;
+    &:hover {
+      background-color: $blue_hover;
+    }
+    &:active {
+      background-color: $blue_hover;
+      font-size: 2px;
+    }
     .icon {
       margin: 0 auto;
       color: $white;
