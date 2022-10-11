@@ -4,7 +4,7 @@
     <div class="card_description">
       <div class="card_header">
         <h2 class="video_title">{{ video.snippet.title }}</h2>
-        <div class="video_date">{{ video.snippet.publishedAt }}</div>
+        <div class="video_date">{{ video.snippet.publishedAt | date: 'fullDate' }}</div>
       </div>
       <div class="video_description">{{ video.snippet.description }}</div>
     </div>
