@@ -17,7 +17,7 @@ export class SearchInputComponent implements OnInit {
 
   videoResult: SearchItem[] = [];
 
-  onClick(): void {
+  onSearchClick(): void {
     if (this.searchTerm.length && this.searchTerm !== this.previousSearchTerm) {
       this.previousSearchTerm = this.searchTerm;
       this.videoResult = mockedData.items.filter(

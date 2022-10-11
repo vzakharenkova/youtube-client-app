@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 // import { SearchItem } from './models/search-item.model';
-// import { SortingBy, SortingOrder } from './models/shared.model';
+// import { SortingBy, SortingCriteria, SortingOrder } from './models/shared.model';
 
 @Component({
   selector: 'app-root',
@@ -22,12 +22,13 @@ export class AppComponent {
   //   this.videoResult = videoResult;
   // }
 
-  // onASorted(criteria: Array<string | SortingBy | SortingOrder>) {
-  //   if (criteria.length === 1) {
-  //     this.sortTerm = <string>criteria[0];
-  //   } else {
-  //     this.sortedBy = <SortingBy>criteria[0];
-  //     this.sortingOrder = <SortingOrder>criteria[1];
+  // onASorted(criteria: SortingCriteria) {
+  //   if (criteria.term) {
+  //     this.sortTerm = criteria.term;
+  //   }
+  //   if (criteria.sortingBy && criteria.sortingOrder) {
+  //     this.sortedBy = criteria.sortingBy;
+  //     this.sortingOrder = criteria.sortingOrder;
   //   }
   // }
 }

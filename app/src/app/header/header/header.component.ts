@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { SearchItem } from 'src/app/models/search-item.model';
-// import { SortingBy, SortingOrder } from 'src/app/models/shared.model';
-// import { SearchService } from 'src/app/search/search.service';
+// import { SortingBy, SortingCriteria, SortingOrder } from 'src/app/models/shared.model';
 // import { SearchService } from 'src/app/search/search.service';
 
 @Component({
@@ -12,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   // @Output() clickSearch: EventEmitter<SearchItem[]> = new EventEmitter();
 
-  // @Output() clickSort: EventEmitter<Array<string | SortingBy | SortingOrder>> = new EventEmitter();
+  // @Output() clickSort: EventEmitter<SortingCriteria> = new EventEmitter();
 
   settinsIsOpend = false;
 
@@ -33,18 +32,17 @@ export class HeaderComponent implements OnInit {
   //   // this.clickSearch.emit(this.videoResult);
   // }
 
-  // onASorted(criteria: Array<string | SortingBy | SortingOrder>) {
-  //   if (criteria.length === 1) {
-  //     this.sortTerm = <string>criteria[0];
-  //     // this.clickSort.emit([this.sortTerm]);
-  //   } else {
-  //     this.sortedBy = <SortingBy>criteria[0];
-  //     this.sortingOrder = <SortingOrder>criteria[1];
-  //     // this.clickSort.emit([this.sortedBy, this.sortingOrder]);
+  // onASorted(criteria: SortingCriteria) {
+  //   if (criteria.term) {
+  //     this.sortTerm = criteria.term;
+  //     this.clickSort.emit({ term: this.sortTerm });
+  //   }
+  //   if (criteria.sortingBy && criteria.sortingOrder) {
+  //     this.sortedBy = criteria.sortingBy;
+  //     this.sortingOrder = criteria.sortingOrder;
+  //     this.clickSort.emit({ sortingBy: this.sortedBy, sortingOrder: this.sortingOrder });
   //   }
   // }
-
-  // constructor(private readonly searchService: SearchService) {}
 
   // public setAnyCount(): void {
   //   this.searchService.changeCount(Math.random());

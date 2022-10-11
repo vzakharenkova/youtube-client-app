@@ -8,6 +8,12 @@ const dateMap = {
   week: Math.abs(startDate - Date.parse('01.08.1997')),
 };
 
+enum StatusClasses {
+  MoreThanSixMonths = 'group-4',
+  MoreThanMonth = 'group-3',
+  MoreThanWeek = 'group-2',
+  LessThanWeek = 'group-1',
+}
 @Directive({
   selector: '[appDateStatus]',
 })
@@ -18,26 +24,24 @@ export class DateStatusDirective implements OnInit {
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
 
   ngOnInit(): void {
-    if (!Boolean(Date.parse(this.video.snippet.publishedAt))) {
-      return;
+    if (Boolean(Date.parse(this.video.snippet.publishedAt))) {
+      this.renderer.addClass(this.elementRef.nativeElement, this.getClass());
     }
-    this.renderer.addClass(this.elementRef.nativeElement, this.getClass());
   }
 
-  getClass() {
+  private getClass() {
     const currentDate = Date.now();
     const videoDate = new Date(this.video.snippet.publishedAt);
     const gap = Math.abs(currentDate - videoDate.getTime());
-    console.log(gap, dateMap.halfYear);
-    const statusClasses = ['group-1', 'group-2', 'group-3', 'group-4'];
+
     if (gap > dateMap.halfYear) {
-      return statusClasses[3];
+      return StatusClasses.MoreThanSixMonths;
     } else if (gap > dateMap.month) {
-      return statusClasses[2];
+      return StatusClasses.MoreThanMonth;
     } else if (gap > dateMap.week) {
-      return statusClasses[1];
+      return StatusClasses.MoreThanWeek;
     } else {
-      return statusClasses[0];
+      return StatusClasses.LessThanWeek;
     }
   }
 }
