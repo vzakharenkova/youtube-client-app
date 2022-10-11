@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchItem } from 'src/app/models/search-item.model';
 
 @Component({
@@ -10,7 +11,11 @@ export class SearchCardComponent implements OnInit {
   @Input()
   video!: SearchItem;
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  public goToVideoDescriptionPage() {
+    this.router.navigate(['/video', this.video.id]);
+  }
 
   ngOnInit(): void {}
 }

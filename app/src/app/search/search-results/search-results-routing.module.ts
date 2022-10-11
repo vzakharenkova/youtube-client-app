@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DescriptionCardComponent } from '../cards/description-card/description-card.component';
 import { SearchResultsComponent } from './search-results.component';
 
-const routes: Routes = [{ path: '', component: SearchResultsComponent }];
+const routes: Routes = [
+  { path: '', component: SearchResultsComponent },
+  { path: 'video/:id', component: DescriptionCardComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
