@@ -6,10 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { DirectivesModule } from 'src/app/directive/directives.module';
 import { RouterModule } from '@angular/router';
-import { CardStatisticComponent } from '../card-statistic/card-statistic.component';
+import { CardStatisticModule } from '../card-statistic/card-statistic.module';
 
 @NgModule({
-  declarations: [SearchCardComponent, CardStatisticComponent],
+  declarations: [SearchCardComponent],
   imports: [
     CommonModule,
     MatCardModule,
@@ -17,7 +17,8 @@ import { CardStatisticComponent } from '../card-statistic/card-statistic.compone
     MatButtonModule,
     DirectivesModule,
     RouterModule,
+    CardStatisticModule,
   ],
-  exports: [SearchCardComponent, CardStatisticComponent],
+  exports: [SearchCardComponent],
 })
 export class SearchCardModule {}
