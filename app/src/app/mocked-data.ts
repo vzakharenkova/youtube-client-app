@@ -1,4 +1,4 @@
-import { SearchResponse } from './models/search-response.model';
+import { SearchResponse } from './shared/models/search-response.model';
 
 export const mockedData: SearchResponse = {
   kind: 'youtube#videoListResponse',

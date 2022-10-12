@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InputPropsModel } from 'src/app/models/shared.model';
+import { InputPropsModel } from '../../models/shared.model';
 
 @Component({
   selector: 'app-form',
