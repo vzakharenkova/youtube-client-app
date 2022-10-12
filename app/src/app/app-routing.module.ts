@@ -4,10 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('./youtube/components/search-results/search-results.module').then(
-        (m) => m.SearchResultsModule,
-      ),
+    loadChildren: () => import('./youtube/pages/main/main.module').then((m) => m.MainModule),
   },
   {
     path: 'login',
@@ -20,15 +17,6 @@ const routes: Routes = [
       import('./authorization/pages/registration/registration/registration.module').then(
         (m) => m.RegistrationModule,
       ),
-  },
-  {
-    path: 'form-input',
-    loadChildren: () =>
-      import('./shared/components/form-input/form-input.module').then((m) => m.FormInputModule),
-  },
-  {
-    path: 'form',
-    loadChildren: () => import('./shared/components/form/form.module').then((m) => m.FormModule),
   },
   {
     path: '**',

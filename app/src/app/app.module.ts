@@ -22,6 +22,8 @@ import { CardStatisticModule } from './youtube/components/card-statistic/card-st
 import { DescriptionCardModule } from './youtube/components/description-card/description-card.module';
 import { SearchCardModule } from './youtube/components/search-card/search-card.module';
 import { SearchResultsModule } from './youtube/components/search-results/search-results.module';
+import { MainModule } from './youtube/pages/main/main.module';
+import { VideoDescriptionModule } from './youtube/pages/video-description/video-description.module';
 import { FilterPipe } from './youtube/pipes/filter.pipe';
 
 @NgModule({
@@ -37,6 +39,8 @@ import { FilterPipe } from './youtube/pipes/filter.pipe';
   ],
   imports: [
     BrowserModule,
+    MainModule,
+    VideoDescriptionModule,
     CardStatisticModule,
     DescriptionCardModule,
     SearchCardModule,
