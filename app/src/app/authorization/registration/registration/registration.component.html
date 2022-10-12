@@ -1,1 +1,8 @@
-<p>registration works!</p>
+<div class="registration">
+  <h2 class="form_title">Registration</h2>
+  <app-form [inputProps]="inputProps"> </app-form>
+  <div class="btn_field">
+    <a class="link" [routerLink]="['/login']">Login</a>
+    <button class="submit_btn" type="submit">Registration</button>
+  </div>
+</div>

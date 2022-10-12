@@ -1,0 +1,24 @@
+@import '../../../shared/shared.scss';
+
+:host {
+  .input_field {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+    .label {
+      color: $dark-grey;
+      font-size: 90%;
+    }
+
+    .input {
+      box-sizing: border-box;
+      background-color: $grey;
+      outline: none;
+      border: none;
+      height: 40px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  }
+}

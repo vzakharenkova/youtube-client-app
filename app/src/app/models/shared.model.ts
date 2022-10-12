@@ -1,3 +1,8 @@
+export interface InputPropsModel {
+  title: string;
+  type: string;
+}
+
 export type SortingCriteria = {
   term?: string;
   sortingType?: SortingType | null;

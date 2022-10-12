@@ -12,6 +12,9 @@ const routes: Routes = [
     loadChildren: () =>
       import('./authorization/login/login/login.module').then((m) => m.LoginModule),
   },
+  { path: 'registration', loadChildren: () => import('./authorization/registration/registration/registration.module').then(m => m.RegistrationModule) },
+  { path: 'form-input', loadChildren: () => import('./shared/components/form-input/form-input.module').then(m => m.FormInputModule) },
+  { path: 'form', loadChildren: () => import('./shared/components/form/form.module').then(m => m.FormModule) },
   {
     path: '**',
     loadChildren: () => import('./error/error/error.module').then((m) => m.ErrorModule),

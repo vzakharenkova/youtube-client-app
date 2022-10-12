@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegistrationComponent } from './authorization/registration/registration/registration.component';
 import { CardCreatorComponent } from './card-creator/card-creator/card-creator.component';
 import { HeaderComponent } from './header/header/header.component';
 import { SettingsComponent } from './header/settings/settings.component';
@@ -21,11 +20,13 @@ import { MatCardModule } from '@angular/material/card';
 import { CardStatisticModule } from './search/cards/card-statistic/card-statistic.module';
 import { DescriptionCardModule } from './search/cards/description-card/description-card.module';
 import { LoginModule } from './authorization/login/login/login.module';
+import { FormInputModule } from './shared/components/form-input/form-input.module';
+import { RegistrationModule } from './authorization/registration/registration/registration.module';
+import { FormModule } from './shared/components/form/form.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
     CardCreatorComponent,
     HeaderComponent,
     SettingsComponent,
@@ -42,6 +43,9 @@ import { LoginModule } from './authorization/login/login/login.module';
     SearchResultsModule,
     ErrorModule,
     LoginModule,
+    RegistrationModule,
+    FormModule,
+    FormInputModule,
     AppRoutingModule,
     MatCardModule,
     MatIconModule,
