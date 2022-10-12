@@ -1,1 +1,9 @@
-<p>search-input works!</p>
+<div class="search">
+  <input
+    type="search"
+    class="search-input"
+    placeholder="What are you want to find out?"
+    [(ngModel)]="searchTerm"
+  />
+  <button class="search-btn" (click)="onSearchClick()">search</button>
+</div>

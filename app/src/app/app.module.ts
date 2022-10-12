@@ -14,6 +14,13 @@ import { SearchCardComponent } from './search/cards/search-card/search-card.comp
 import { DescriptionCardComponent } from './search/cards/description-card/description-card.component';
 import { LoginInfoComponent } from './header/login-info/login-info.component';
 import { SearchInputComponent } from './header/search-input/search-input.component';
+import { MatIconModule } from '@angular/material/icon';
+import { HeaderBtnComponent } from './header/header-btn/header-btn.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { FilterPipe } from './pipes/filter.pipe';
+import { DateStatusDirective } from './directive/date-status.directive';
 
 @NgModule({
   declarations: [
@@ -28,13 +35,20 @@ import { SearchInputComponent } from './header/search-input/search-input.compone
     SearchCardComponent,
     DescriptionCardComponent,
     LoginInfoComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    HeaderBtnComponent,
+    FilterPipe,
+    DateStatusDirective,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
