@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { mockedData } from 'src/app/mocked-data';
 import { SearchItem } from 'src/app/models/search-item.model';
 import { SearchService } from '../../search.service';
 
@@ -19,8 +20,9 @@ export class DescriptionCardComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.videoId = params['id'];
     });
-    this.video = this.searchService.videos$
-      .getValue()
-      .find((item) => item.id === this.videoId) as SearchItem;
+    // this.video = this.searchService.videos$
+    //   .getValue()
+    //   .find((item) => item.id === this.videoId) as SearchItem;
+    this.video = mockedData.items.find((item) => item.id === this.videoId) as SearchItem;
   }
 }
