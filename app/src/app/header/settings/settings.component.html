@@ -1,7 +1,7 @@
 <div class="settings">
   <span class="settings-title">Sorting by:</span>
-  <a class="settings-type link" (click)="onClick(sortingType.Date)">date</a>
-  <a class="settings-type link" (click)="onClick(sortingType.Views)">count of views</a>
+  <a class="settings-type link" (click)="onSortClick(sortingTypeEnum.Date)">date</a>
+  <a class="settings-type link" (click)="onSortClick(sortingTypeEnum.Views)">count of views</a>
   <div class="settings-item">
     <label for="settings-input" class="settings-type">by word or sentance</label>
     <input

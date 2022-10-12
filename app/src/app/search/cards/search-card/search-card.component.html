@@ -1,5 +1,9 @@
 <mat-card appDateStatus [video]="video">
-  <img class="video-img" src="{{ video.snippet.thumbnails.medium.url }}" alt="video_img" />
+  <img
+    class="video-img"
+    src="{{ video.snippet.thumbnails.medium.url }}"
+    alt="{{ video.snippet.title }}"
+  />
   <mat-card-content>
     <div class="card-statistic-item">
       <mat-icon>visibility</mat-icon>

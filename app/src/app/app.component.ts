@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SearchItem } from './models/search-item.model';
-import { SortingBy, SortingCriteria, SortingOrder } from './models/shared.model';
+import { SortingType, SortingCriteria, SortingOrder } from './models/shared.model';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +14,9 @@ export class AppComponent {
 
   sortTerm = '';
 
-  sortingOrder: SortingOrder = null;
+  sortingOrder: SortingOrder | null = null;
 
-  sortedBy: SortingBy = null;
+  sortedBy: SortingType | null = null;
 
   onASearched(videoResult: SearchItem[]) {
     this.videoResult = videoResult;
@@ -26,8 +26,8 @@ export class AppComponent {
     if (criteria.term) {
       this.sortTerm = criteria.term;
     }
-    if (criteria.sortingBy && criteria.sortingOrder) {
-      this.sortedBy = criteria.sortingBy;
+    if (criteria.sortingType && criteria.sortingOrder) {
+      this.sortedBy = criteria.sortingType;
       this.sortingOrder = criteria.sortingOrder;
     }
   }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SearchItem } from 'src/app/models/search-item.model';
-import { SortingBy, SortingCriteria, SortingOrder } from 'src/app/models/shared.model';
+import { SortingType, SortingCriteria, SortingOrder } from 'src/app/models/shared.model';
 
 @Component({
   selector: 'app-header',
@@ -18,9 +18,9 @@ export class HeaderComponent implements OnInit {
 
   sortTerm = '';
 
-  sortingOrder: SortingOrder = null;
+  sortingOrder: SortingOrder | null = null;
 
-  sortedBy: SortingBy = null;
+  sortedBy: SortingType | null = null;
 
   onToggleSettings() {
     this.settinsIsOpend = !this.settinsIsOpend;
@@ -36,10 +36,10 @@ export class HeaderComponent implements OnInit {
       this.sortTerm = criteria.term;
       this.clickSort.emit({ term: this.sortTerm });
     }
-    if (criteria.sortingBy && criteria.sortingOrder) {
-      this.sortedBy = criteria.sortingBy;
+    if (criteria.sortingType && criteria.sortingOrder) {
+      this.sortedBy = criteria.sortingType;
       this.sortingOrder = criteria.sortingOrder;
-      this.clickSort.emit({ sortingBy: this.sortedBy, sortingOrder: this.sortingOrder });
+      this.clickSort.emit({ sortingType: this.sortedBy, sortingOrder: this.sortingOrder });
     }
   }
 

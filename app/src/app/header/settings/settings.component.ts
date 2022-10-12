@@ -1,11 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SearchItem } from 'src/app/models/search-item.model';
-import { SortingBy, SortingCriteria, SortingOrder } from 'src/app/models/shared.model';
+import { SortingCriteria, SortingOrder, SortingType } from 'src/app/models/shared.model';
 
-enum SortingType {
-  Date = 'date',
-  Views = 'views',
-}
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -19,26 +15,28 @@ export class SettingsComponent implements OnInit {
 
   @Output() changeSort: EventEmitter<SortingCriteria> = new EventEmitter();
 
-  sortingType = SortingType;
+  sortingTypeEnum = SortingType;
+
+  sortingOrderEnum = SortingOrder;
 
   sortTerm = '';
 
-  sortingOrder: SortingOrder = null;
+  sortingOrder: SortingOrder | null = null;
 
-  sortedBy: SortingBy = null;
+  sortingType: SortingType | null = null;
 
-  onClick(by: 'date' | 'views') {
-    if (this.sortedBy === null || this.sortedBy !== by) {
-      this.sortingOrder = 'up';
+  onSortClick(by: 'date' | 'views') {
+    if (this.sortingType === null || this.sortingType !== by) {
+      this.sortingOrder = this.sortingOrderEnum.Up;
     } else if (this.sortingOrder === 'up') {
-      this.sortingOrder = 'down';
+      this.sortingOrder = this.sortingOrderEnum.Down;
     } else {
-      this.sortingOrder = 'up';
+      this.sortingOrder = this.sortingOrderEnum.Up;
     }
 
-    this.sortedBy = by;
+    this.sortingType = by as SortingType;
 
-    this.clickSort.emit({ sortingBy: this.sortedBy, sortingOrder: this.sortingOrder });
+    this.clickSort.emit({ sortingType: this.sortingType, sortingOrder: this.sortingOrder });
   }
 
   onChange() {
