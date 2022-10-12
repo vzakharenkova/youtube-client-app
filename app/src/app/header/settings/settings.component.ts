@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchItem } from 'src/app/models/search-item.model';
-import { SortingBy, SortingOrder } from 'src/app/models/shared.model';
+import { SortingOrder, SortingType } from 'src/app/models/shared.model';
 import { SearchService } from 'src/app/search/search.service';
 
-enum SortingType {
-  Date = 'date',
-  Views = 'views',
-}
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -15,25 +11,25 @@ enum SortingType {
 export class SettingsComponent implements OnInit {
   currentVideoList: SearchItem[] = [];
 
-  sortingType = SortingType;
-
   sortTerm = '';
 
-  sortingOrder: SortingOrder = null;
+  sortingTypeEnum = SortingType;
 
-  sortedBy: SortingBy = null;
+  sortingOrder: SortingOrder | null = null;
 
-  onClick(by: 'date' | 'views') {
-    if (this.sortedBy === null || this.sortedBy !== by) {
-      this.sortingOrder = 'up';
-    } else if (this.sortingOrder === 'up') {
-      this.sortingOrder = 'down';
+  sortingType: SortingType | null = null;
+
+  onSortClick(by: SortingType) {
+    if (this.sortingType === null || this.sortingType !== by) {
+      this.sortingOrder = SortingOrder.Up;
+    } else if (this.sortingOrder === SortingOrder.Up) {
+      this.sortingOrder = SortingOrder.Down;
     } else {
-      this.sortingOrder = 'up';
+      this.sortingOrder = SortingOrder.Up;
     }
-    this.sortedBy = by;
+    this.sortingType = by;
 
-    this.searchService.changeSortingCriteria(this.sortedBy, this.sortingOrder);
+    this.searchService.changeSortingCriteria(this.sortingType, this.sortingOrder);
     this.searchService.changeVideos(this.currentVideoList);
   }
 

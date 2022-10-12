@@ -1,9 +1,15 @@
-export type SortingBy = 'date' | 'views' | null;
-
-export type SortingOrder = 'up' | 'down' | null;
-
 export type SortingCriteria = {
   term?: string;
-  sortingBy?: SortingBy;
-  sortingOrder?: SortingOrder;
+  sortingType?: SortingType | null;
+  sortingOrder?: SortingOrder | null;
 };
+
+export enum SortingType {
+  Date = 'date',
+  Views = 'views',
+}
+
+export enum SortingOrder {
+  Down = 'down',
+  Up = 'up',
+}

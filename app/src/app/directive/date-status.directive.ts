@@ -8,7 +8,7 @@ const dateMap = {
   week: Math.abs(startDate - Date.parse('01.08.1997')),
 };
 
-enum StatusClasses {
+enum StatusClass {
   MoreThanSixMonths = 'group-4',
   MoreThanMonth = 'group-3',
   MoreThanWeek = 'group-2',
@@ -35,13 +35,13 @@ export class DateStatusDirective implements OnInit {
     const gap = Math.abs(currentDate - videoDate.getTime());
 
     if (gap > dateMap.halfYear) {
-      return StatusClasses.MoreThanSixMonths;
+      return StatusClass.MoreThanSixMonths;
     } else if (gap > dateMap.month) {
-      return StatusClasses.MoreThanMonth;
+      return StatusClass.MoreThanMonth;
     } else if (gap > dateMap.week) {
-      return StatusClasses.MoreThanWeek;
+      return StatusClass.MoreThanWeek;
     } else {
-      return StatusClasses.LessThanWeek;
+      return StatusClass.LessThanWeek;
     }
   }
 }

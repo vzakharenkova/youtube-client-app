@@ -18,7 +18,7 @@ export class SearchResultsComponent implements OnInit {
       (videos) =>
         (this.videoResult = this.filter.transform(videos, {
           term: this.searchService.sortTerm$.getValue(),
-          sortingBy: this.searchService.sortedBy$.getValue(),
+          sortingType: this.searchService.sortedBy$.getValue(),
           sortingOrder: this.searchService.sortingOrder$.getValue(),
         })),
     );

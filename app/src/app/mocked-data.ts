@@ -1,6 +1,6 @@
-import { SearchResponce } from './models/search-response.model';
+import { SearchResponse } from './models/search-response.model';
 
-export const mockedData: SearchResponce = {
+export const mockedData: SearchResponse = {
   kind: 'youtube#videoListResponse',
   etag: '"Fznwjl6JEQdo1MGvHOGaz_YanRU/Cmodw7c5XPTM8Yg3kMXelihxek4"',
   pageInfo: {
