@@ -25,16 +25,16 @@ export class SettingsComponent implements OnInit {
 
   sortingType: SortingType | null = null;
 
-  onSortClick(by: 'date' | 'views') {
+  onSortClick(by: SortingType) {
     if (this.sortingType === null || this.sortingType !== by) {
-      this.sortingOrder = this.sortingOrderEnum.Up;
-    } else if (this.sortingOrder === 'up') {
-      this.sortingOrder = this.sortingOrderEnum.Down;
+      this.sortingOrder = SortingOrder.Up;
+    } else if (this.sortingOrder === SortingOrder.Up) {
+      this.sortingOrder = SortingOrder.Down;
     } else {
-      this.sortingOrder = this.sortingOrderEnum.Up;
+      this.sortingOrder = SortingOrder.Up;
     }
 
-    this.sortingType = by as SortingType;
+    this.sortingType = <SortingType>by;
 
     this.clickSort.emit({ sortingType: this.sortingType, sortingOrder: this.sortingOrder });
   }

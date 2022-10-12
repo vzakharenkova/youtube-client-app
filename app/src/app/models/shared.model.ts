@@ -10,6 +10,6 @@ export enum SortingType {
 }
 
 export enum SortingOrder {
-  Up = 'up',
   Down = 'down',
+  Up = 'up',
 }
