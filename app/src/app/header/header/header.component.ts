@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,5 +13,11 @@ export class HeaderComponent implements OnInit {
     this.settinsIsOpend = !this.settinsIsOpend;
   }
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {}
+
+  public goToLoginPage() {
+    this.router.navigate(['/login']);
+  }
 }

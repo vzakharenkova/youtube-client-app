@@ -8,6 +8,11 @@ const routes: Routes = [
       import('./search/search-results/search-results.module').then((m) => m.SearchResultsModule),
   },
   {
+    path: 'login',
+    loadChildren: () =>
+      import('./authorization/login/login/login.module').then((m) => m.LoginModule),
+  },
+  {
     path: '**',
     loadChildren: () => import('./error/error/error.module').then((m) => m.ErrorModule),
   },
