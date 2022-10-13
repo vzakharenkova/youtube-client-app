@@ -1,23 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth-guard.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./youtube/pages/main/main.module').then((m) => m.MainModule),
+    path: 'youtube',
+    loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
+    canLoad: [AuthGuard],
   },
   {
-    path: 'login',
+    path: 'auth',
     loadChildren: () =>
-      import('./authorization/pages/login/login/login.module').then((m) => m.LoginModule),
+      import('./authorization/authorization.module').then((m) => m.AuthorizationModule),
   },
-  {
-    path: 'registration',
-    loadChildren: () =>
-      import('./authorization/pages/registration/registration/registration.module').then(
-        (m) => m.RegistrationModule,
-      ),
-  },
+  { path: '', pathMatch: 'full', redirectTo: 'youtube' },
   {
     path: '**',
     loadChildren: () => import('./error/error/error.module').then((m) => m.ErrorModule),

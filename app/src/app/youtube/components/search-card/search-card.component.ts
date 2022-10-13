@@ -14,7 +14,7 @@ export class SearchCardComponent implements OnInit {
   constructor(private router: Router) {}
 
   public goToVideoDescriptionPage() {
-    this.router.navigate(['/video', this.video.id]);
+    this.router.navigate(['/youtube/video', this.video.id]);
   }
 
   ngOnInit(): void {}

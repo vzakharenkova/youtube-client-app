@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthorizationModule } from './authorization/authorization.module';
 import { LoginModule } from './authorization/pages/login/login/login.module';
 import { RegistrationModule } from './authorization/pages/registration/registration/registration.module';
 import { CardCreatorComponent } from './card-creator/card-creator/card-creator.component';
@@ -25,6 +26,7 @@ import { SearchResultsModule } from './youtube/components/search-results/search-
 import { MainModule } from './youtube/pages/main/main.module';
 import { VideoDescriptionModule } from './youtube/pages/video-description/video-description.module';
 import { FilterPipe } from './youtube/pipes/filter.pipe';
+import { YoutubeModule } from './youtube/youtube.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { FilterPipe } from './youtube/pipes/filter.pipe';
   ],
   imports: [
     BrowserModule,
+    YoutubeModule,
+    AuthorizationModule,
     MainModule,
     VideoDescriptionModule,
     CardStatisticModule,
