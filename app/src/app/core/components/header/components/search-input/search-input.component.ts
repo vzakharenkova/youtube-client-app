@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { mockedData } from 'src/app/mocked-data';
 
 import { SearchItem } from 'src/app/shared/models/search-item.model';
@@ -17,7 +18,13 @@ export class SearchInputComponent implements OnInit {
   videoResult: SearchItem[] = [];
 
   onSearchClick(): void {
-    if (this.searchTerm.length && this.searchTerm !== this.previousSearchTerm) {
+    if (
+      (this.searchTerm.length && this.searchTerm !== this.previousSearchTerm) ||
+      this.router.url !== '/youtube'
+    ) {
+      if (this.router.url !== '/youtube') {
+        this.router.navigateByUrl('/youtube');
+      }
       this.previousSearchTerm = this.searchTerm;
       this.videoResult = mockedData.items.filter(
         (item) =>
@@ -28,7 +35,7 @@ export class SearchInputComponent implements OnInit {
     }
   }
 
-  constructor(private readonly searchService: SearchService) {}
+  constructor(private readonly searchService: SearchService, private router: Router) {}
 
   ngOnInit(): void {}
 }
