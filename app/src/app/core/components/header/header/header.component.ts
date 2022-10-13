@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
+import { NavRoute } from 'src/app/shared/models/shared.model';
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,6 @@ export class HeaderComponent implements OnInit {
       this.authService.setUserName(false);
       this.authService.setUserToken(false);
     }
-    this.router.navigateByUrl('/auth/login');
+    this.router.navigateByUrl(NavRoute.Login);
   }
 }

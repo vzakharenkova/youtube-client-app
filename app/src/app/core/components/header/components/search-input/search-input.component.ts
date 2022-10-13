@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { mockedData } from 'src/app/mocked-data';
 
 import { SearchItem } from 'src/app/shared/models/search-item.model';
+import { NavRoute } from 'src/app/shared/models/shared.model';
 import { SearchService } from 'src/app/youtube/services/search.service';
 
 @Component({
@@ -20,10 +21,10 @@ export class SearchInputComponent implements OnInit {
   onSearchClick(): void {
     if (
       (this.searchTerm.length && this.searchTerm !== this.previousSearchTerm) ||
-      this.router.url !== '/youtube'
+      this.router.url !== NavRoute.Main
     ) {
-      if (this.router.url !== '/youtube') {
-        this.router.navigateByUrl('/youtube');
+      if (this.router.url !== NavRoute.Main) {
+        this.router.navigateByUrl(NavRoute.Main);
       }
       this.previousSearchTerm = this.searchTerm;
       this.videoResult = mockedData.items.filter(

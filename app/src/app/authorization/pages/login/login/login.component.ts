@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
-import { InputPropsModel } from 'src/app/shared/models/shared.model';
+import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +10,8 @@ import { InputPropsModel } from 'src/app/shared/models/shared.model';
 })
 export class LoginComponent implements OnInit {
   auth = this.authService.loginForm$;
+
+  navRoute = NavRoute;
 
   inputProps: InputPropsModel[] = [
     { title: 'Login', type: 'text', auth: this.auth },

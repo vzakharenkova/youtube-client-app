@@ -6,6 +6,13 @@ export interface InputPropsModel {
   auth?: BehaviorSubject<{ [x: string]: string }>;
 }
 
+export enum NavRoute {
+  Main = '/youtube',
+  Registration = '/auth/registration',
+  Login = '/auth/login',
+  Video = '/youtube/video',
+}
+
 export type SortingCriteria = {
   term?: string;
   sortingType?: SortingType | null;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InputPropsModel } from 'src/app/shared/models/shared.model';
+import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
 
 @Component({
   selector: 'app-registration',
@@ -7,6 +7,8 @@ import { InputPropsModel } from 'src/app/shared/models/shared.model';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
+  navRoute = NavRoute;
+
   inputProps: InputPropsModel[] = [
     { title: 'First Name', type: 'text' },
     { title: 'Last Name', type: 'text' },

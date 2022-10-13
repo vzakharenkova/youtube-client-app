@@ -12,6 +12,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
+import { NavRoute } from 'src/app/shared/models/shared.model';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +37,7 @@ export class AuthGuard implements CanLoad, CanActivate {
     state: RouterStateSnapshot,
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     if (!this.authService.getUserToken().length) {
-      this.router.navigateByUrl('/auth/login');
+      this.router.navigateByUrl(NavRoute.Login);
     }
     this.authService.getUserName();
 
