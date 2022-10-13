@@ -24,6 +24,10 @@ export class AuthorizationService {
   }
 
   getUserToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.userToken$.next(token);
+    }
     return this.userToken$.getValue();
   }
 
