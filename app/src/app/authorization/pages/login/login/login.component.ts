@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.authService.setUserToken(true);
     if (this.authService.getUserToken().length) {
       this.authService.setUserName(true);
-      this.router.navigateByUrl('/youtube');
+      this.router.navigateByUrl(NavRoute.Main);
       localStorage.setItem('token', this.authService.getUserToken());
       localStorage.setItem('userName', this.authService.getUserName());
     }

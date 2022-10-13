@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DefaultAuthParam } from 'src/app/authorization/models/authorization.model';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
 
 @Component({
@@ -7,7 +8,9 @@ import { AuthorizationService } from 'src/app/authorization/services/authorizati
   styleUrls: ['./login-info.component.scss'],
 })
 export class LoginInfoComponent implements OnInit {
-  userName = '';
+  defaultUserName = DefaultAuthParam.DefaultUserName;
+
+  userName: string | DefaultAuthParam = DefaultAuthParam.DefaultUserName;
 
   constructor(private readonly authService: AuthorizationService) {}
 

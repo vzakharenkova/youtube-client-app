@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { DefaultAuthParam } from '../models/authorization.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizationService {
-  userName$ = new BehaviorSubject<string>('Your Name');
+  userName$ = new BehaviorSubject<string | DefaultAuthParam>(DefaultAuthParam.DefaultUserName);
 
   loginForm$ = new BehaviorSubject<{ [x: string]: string }>({ login: '', password: '' });
 
@@ -42,7 +43,7 @@ export class AuthorizationService {
     if (login) {
       this.userName$.next(this.loginForm$.getValue()['login']);
     } else {
-      this.userName$.next('Your Name');
+      this.userName$.next(DefaultAuthParam.DefaultUserName);
       localStorage.removeItem('userName');
     }
   }

@@ -3,7 +3,11 @@
   <app-header-btn
     type="login"
     icon="account_circle"
-    *ngIf="userName === 'Your Name'"
+    *ngIf="userName === this.defaultUserName"
   ></app-header-btn>
-  <app-header-btn type="login" icon="exit_to_app" *ngIf="userName !== 'Your Name'"></app-header-btn>
+  <app-header-btn
+    type="login"
+    icon="exit_to_app"
+    *ngIf="userName !== this.defaultUserName"
+  ></app-header-btn>
 </div>
