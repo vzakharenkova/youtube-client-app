@@ -18,14 +18,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    console.log('ffff');
     this.authService.setUserToken(true);
     if (this.authService.getUserToken().length) {
-      console.log('fffknerjgnf');
       this.authService.setUserName(true);
       this.router.navigateByUrl('/youtube');
       localStorage.setItem('token', this.authService.getUserToken());
-      localStorage.setItem('userName', this.authService.getUserToken());
+      localStorage.setItem('userName', this.authService.getUserName());
     }
   }
 
