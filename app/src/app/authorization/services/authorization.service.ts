@@ -5,10 +5,22 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthorizationService {
+  loginForm$ = new BehaviorSubject<{ [x: string]: string }>({ login: '', password: '' });
+
+  lоgin$ = new BehaviorSubject<string>('');
+
   userToken$ = new BehaviorSubject<string>('');
 
-  setUserToken(userToken: string) {
-    this.userToken$.next(userToken);
+  setUserToken() {
+    if (Object.values(this.loginForm$.getValue()).every((v) => v.length > 0)) {
+      this.userToken$.next(
+        this.loginForm$.getValue()['login'] + this.loginForm$.getValue()['password'],
+      );
+    }
+  }
+
+  setValue(ref: BehaviorSubject<{ [x: string]: string }>, value: { [x: string]: string }) {
+    ref.next(value);
   }
 
   getUserToken() {

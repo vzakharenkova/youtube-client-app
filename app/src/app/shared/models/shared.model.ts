@@ -1,6 +1,9 @@
+import { BehaviorSubject } from 'rxjs';
+
 export interface InputPropsModel {
   title: string;
   type: string;
+  auth?: BehaviorSubject<{ [x: string]: string }>;
 }
 
 export type SortingCriteria = {

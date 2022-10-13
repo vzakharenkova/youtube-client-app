@@ -3,6 +3,6 @@
   <app-form [inputProps]="inputProps"> </app-form>
   <div class="btn_field">
     <a class="link" [routerLink]="['/auth/registration']">Registration</a>
-    <button class="submit_btn" type="submit">Login</button>
+    <button class="submit_btn" type="submit" (click)="onSubmit($event)">Login</button>
   </div>
 </div>

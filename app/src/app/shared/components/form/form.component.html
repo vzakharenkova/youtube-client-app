@@ -1,7 +1,3 @@
 <form class="form">
-  <app-form-input
-    *ngFor="let prop of inputProps"
-    [title]="prop.title"
-    [type]="prop.type"
-  ></app-form-input>
+  <app-form-input *ngFor="let prop of inputProps" [inputProps]="prop"></app-form-input>
 </form>

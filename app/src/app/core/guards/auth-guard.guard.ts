@@ -14,7 +14,7 @@ export class AuthGuard implements CanLoad {
     segments: UrlSegment[],
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!this.authService.getUserToken().length) {
-      this.router.navigate(['/login']);
+      this.router.navigateByUrl('/auth/login');
     }
 
     return !!this.authService.getUserToken().length;

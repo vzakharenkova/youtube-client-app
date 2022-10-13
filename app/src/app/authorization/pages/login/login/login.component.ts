@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
 import { InputPropsModel } from 'src/app/shared/models/shared.model';
 
 @Component({
@@ -7,14 +9,22 @@ import { InputPropsModel } from 'src/app/shared/models/shared.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  auth = this.authService.loginForm$;
+
   inputProps: InputPropsModel[] = [
-    { title: 'Login', type: 'text' },
-    { title: 'Password', type: 'password' },
+    { title: 'Login', type: 'text', auth: this.auth },
+    { title: 'Password', type: 'password', auth: this.auth },
   ];
 
-  // constructor(private router: Router) {}
+  onSubmit(e: Event) {
+    e.preventDefault();
+    this.authService.setUserToken();
+    if (this.authService.getUserToken().length) {
+      this.router.navigateByUrl('/youtube');
+    }
+  }
+
+  constructor(private readonly authService: AuthorizationService, private router: Router) {}
+
   ngOnInit(): void {}
-  // public goToLoginPage() {
-  //   this.router.navigate(['/login']);
-  // }
 }
