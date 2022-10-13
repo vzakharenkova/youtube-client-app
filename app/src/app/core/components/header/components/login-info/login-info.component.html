@@ -1,4 +1,9 @@
 <div class="header_login-info">
   <span class="user-name">{{ userName }}</span>
-  <app-header-btn type="login" icon="account_circle"></app-header-btn>
+  <app-header-btn
+    type="login"
+    icon="account_circle"
+    *ngIf="userName === 'Your Name'"
+  ></app-header-btn>
+  <app-header-btn type="login" icon="exit_to_app" *ngIf="userName !== 'Your Name'"></app-header-btn>
 </div>

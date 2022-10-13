@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
 
 @Component({
   selector: 'app-header',
@@ -13,11 +14,15 @@ export class HeaderComponent implements OnInit {
     this.settinsIsOpend = !this.settinsIsOpend;
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private readonly authService: AuthorizationService) {}
 
   ngOnInit(): void {}
 
   public goToLoginPage() {
+    if (this.authService.getUserToken().length) {
+      this.authService.setUserName(false);
+      this.authService.setUserToken(false);
+    }
     this.router.navigateByUrl('/auth/login');
   }
 }

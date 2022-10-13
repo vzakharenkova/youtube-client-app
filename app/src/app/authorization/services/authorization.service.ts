@@ -5,17 +5,24 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthorizationService {
+  userName$ = new BehaviorSubject<string>('Your Name');
+
   loginForm$ = new BehaviorSubject<{ [x: string]: string }>({ login: '', password: '' });
 
   lоgin$ = new BehaviorSubject<string>('');
 
   userToken$ = new BehaviorSubject<string>('');
 
-  setUserToken() {
-    if (Object.values(this.loginForm$.getValue()).every((v) => v.length > 0)) {
-      this.userToken$.next(
-        this.loginForm$.getValue()['login'] + this.loginForm$.getValue()['password'],
-      );
+  setUserToken(login: boolean) {
+    if (login) {
+      if (Object.values(this.loginForm$.getValue()).every((v) => v.length > 0)) {
+        this.userToken$.next(
+          this.loginForm$.getValue()['login'] + this.loginForm$.getValue()['password'],
+        );
+      }
+    } else {
+      this.userToken$.next('');
+      localStorage.removeItem('token');
     }
   }
 
@@ -29,6 +36,23 @@ export class AuthorizationService {
       this.userToken$.next(token);
     }
     return this.userToken$.getValue();
+  }
+
+  setUserName(login: boolean) {
+    if (login) {
+      this.userName$.next(this.loginForm$.getValue()['login']);
+    } else {
+      this.userName$.next('Your Name');
+      localStorage.removeItem('userName');
+    }
+  }
+
+  getUserName() {
+    const userName = localStorage.getItem('userName');
+    if (userName) {
+      this.userName$.next(userName);
+    }
+    return this.userName$.getValue();
   }
 
   constructor() {}

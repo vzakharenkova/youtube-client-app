@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
 
 @Component({
   selector: 'app-login-info',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-info.component.scss'],
 })
 export class LoginInfoComponent implements OnInit {
-  userName = 'Your Name';
+  userName = '';
 
-  constructor() {}
+  constructor(private readonly authService: AuthorizationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.userName$.subscribe((name) => (this.userName = name));
+  }
 }
