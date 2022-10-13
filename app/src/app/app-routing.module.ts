@@ -19,6 +19,8 @@ const routes: Routes = [
   {
     path: '**',
     loadChildren: () => import('./error/error/error.module').then((m) => m.ErrorModule),
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
   },
 ];
 
