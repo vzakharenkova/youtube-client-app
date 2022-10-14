@@ -37,6 +37,9 @@ mat-card {
     .btn-more {
       display: block;
       margin: 0 auto;
+      &:hover {
+        background-color: $blue_hover;
+      }
     }
   }
 }

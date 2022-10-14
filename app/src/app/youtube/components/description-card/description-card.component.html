@@ -1,10 +1,10 @@
 <div class="card">
   <img class="card_img" src="{{ video.snippet.thumbnails.high.url }}" />
-  <div class="card_content">
+  <div class="card_content" appDateStatus [video]="video">
     <div class="card_description">
       <div class="card_header">
-        <h2 class="video_title">{{ video.snippet.title }}</h2>
         <div class="video_date">{{ video.snippet.publishedAt | date: 'fullDate' }}</div>
+        <h2 class="video_title">{{ video.snippet.title }}</h2>
       </div>
       <div class="video_description">{{ video.snippet.description }}</div>
     </div>
