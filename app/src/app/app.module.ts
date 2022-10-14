@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthorizationModule } from './authorization/authorization.module';
 
 import { CardCreatorComponent } from './card-creator/card-creator/card-creator.component';
-import { HeaderBtnComponent } from './core/components/header/components/header-btn/header-btn.component';
+import { ButtonComponent } from './shared/components/button/button.component';
 import { LoginInfoComponent } from './core/components/header/components/login-info/login-info.component';
 import { SearchInputComponent } from './core/components/header/components/search-input/search-input.component';
 import { SettingsComponent } from './core/components/header/components/settings/settings.component';
@@ -28,7 +28,7 @@ import { YoutubeModule } from './youtube/youtube.module';
     SettingsComponent,
     LoginInfoComponent,
     SearchInputComponent,
-    HeaderBtnComponent,
+    ButtonComponent,
     FilterPipe,
   ],
   imports: [

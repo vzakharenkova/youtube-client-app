@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-header-btn',
-  templateUrl: './header-btn.component.html',
-  styleUrls: ['./header-btn.component.scss'],
+  selector: 'app-button',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
 })
-export class HeaderBtnComponent implements OnInit {
+export class ButtonComponent implements OnInit {
   @Input()
   type!: string;
 
