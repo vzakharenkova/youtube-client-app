@@ -1,4 +1,5 @@
 <div class="card">
+  <app-button type="back" icon="keyboard_arrow_left" (click)="onBackClick()"></app-button>
   <img class="card_img" src="{{ video.snippet.thumbnails.high.url }}" />
   <div class="card_content" appDateStatus [video]="video">
     <div class="card_description">

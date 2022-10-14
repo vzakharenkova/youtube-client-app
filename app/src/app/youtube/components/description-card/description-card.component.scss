@@ -1,8 +1,10 @@
 @import '../../../shared/shared.scss';
 
 :host {
+  app-button {
+    height: 28px;
+  }
   .card {
-    background-color: $grey;
     display: flex;
     filter: drop-shadow(5px 10px 10px rgba(47, 128, 237, 0.25));
     width: fit-content;
@@ -16,6 +18,7 @@
     }
 
     &_content {
+      background-color: $grey;
       width: 30vw;
       padding: 15px 20px 30px 20px;
       display: flex;
