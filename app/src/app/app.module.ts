@@ -33,10 +33,10 @@ import { YoutubeModule } from './youtube/youtube.module';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     YoutubeModule,
     AuthorizationModule,
     ErrorModule,
-    AppRoutingModule,
     MatCardModule,
     MatIconModule,
     MatButtonModule,

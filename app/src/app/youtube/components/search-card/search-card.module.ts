@@ -4,7 +4,6 @@ import { SearchCardComponent } from './search-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
 import { CardStatisticModule } from '../card-statistic/card-statistic.module';
 import { DirectivesModule } from '../../directive/directives.module';
 
@@ -16,7 +15,6 @@ import { DirectivesModule } from '../../directive/directives.module';
     MatIconModule,
     MatButtonModule,
     DirectivesModule,
-    RouterModule,
     CardStatisticModule,
   ],
   exports: [SearchCardComponent],

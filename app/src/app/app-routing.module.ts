@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth-guard.guard';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'youtube' },
+  { path: '', pathMatch: 'full', redirectTo: '/youtube' },
   {
     path: 'youtube',
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
