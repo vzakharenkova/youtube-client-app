@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { mockedData } from 'src/app/mocked-data';
 
@@ -11,7 +11,7 @@ import { SearchService } from 'src/app/youtube/services/search.service';
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.scss'],
 })
-export class SearchInputComponent implements OnInit {
+export class SearchInputComponent {
   searchTerm: string = '';
 
   previousSearchTerm: string = '';
@@ -37,6 +37,4 @@ export class SearchInputComponent implements OnInit {
   }
 
   constructor(private readonly searchService: SearchService, private router: Router) {}
-
-  ngOnInit(): void {}
 }

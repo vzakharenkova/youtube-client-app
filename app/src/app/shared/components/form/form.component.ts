@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { InputPropsModel } from '../../models/shared.model';
 
 @Component({
@@ -6,10 +6,6 @@ import { InputPropsModel } from '../../models/shared.model';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent {
   @Input() inputProps!: InputPropsModel[];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
 import { NavRoute } from 'src/app/shared/models/shared.model';
@@ -8,7 +8,7 @@ import { NavRoute } from 'src/app/shared/models/shared.model';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   settinsIsOpend = false;
 
   onToggleSettings() {
@@ -16,8 +16,6 @@ export class HeaderComponent implements OnInit {
   }
 
   constructor(private router: Router, private readonly authService: AuthorizationService) {}
-
-  ngOnInit(): void {}
 
   public goToLoginPage() {
     if (this.authService.getUserToken().length) {

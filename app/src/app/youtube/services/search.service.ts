@@ -21,7 +21,6 @@ export class SearchService {
 
   public changeSortTerm(sortTerm: string) {
     this.sortTerm$.next(sortTerm);
-    console.log(this.sortTerm$);
   }
 
   public changeSortingCriteria(sortedBy: SortingType, sortingOrder: SortingOrder) {

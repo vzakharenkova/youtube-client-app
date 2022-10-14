@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
 import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
@@ -8,7 +8,7 @@ import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   auth = this.authService.loginForm$;
 
   navRoute = NavRoute;
@@ -30,6 +30,4 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(private readonly authService: AuthorizationService, private router: Router) {}
-
-  ngOnInit(): void {}
 }

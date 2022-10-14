@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SearchItem } from 'src/app/shared/models/search-item.model';
 
 @Component({
@@ -6,11 +6,7 @@ import { SearchItem } from 'src/app/shared/models/search-item.model';
   templateUrl: './card-statistic.component.html',
   styleUrls: ['./card-statistic.component.scss'],
 })
-export class CardStatisticComponent implements OnInit {
+export class CardStatisticComponent {
   @Input()
   video!: SearchItem;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchItem } from 'src/app/shared/models/search-item.model';
 import { NavRoute } from 'src/app/shared/models/shared.model';
@@ -8,7 +8,7 @@ import { NavRoute } from 'src/app/shared/models/shared.model';
   templateUrl: './search-card.component.html',
   styleUrls: ['./search-card.component.scss'],
 })
-export class SearchCardComponent implements OnInit {
+export class SearchCardComponent {
   @Input()
   video!: SearchItem;
 
@@ -17,6 +17,4 @@ export class SearchCardComponent implements OnInit {
   public goToVideoDescriptionPage() {
     this.router.navigate([NavRoute.Video, this.video.id]);
   }
-
-  ngOnInit(): void {}
 }

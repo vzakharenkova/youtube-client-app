@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
 
 @Component({
@@ -6,7 +6,7 @@ import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
   navRoute = NavRoute;
 
   inputProps: InputPropsModel[] = [
@@ -15,8 +15,4 @@ export class RegistrationComponent implements OnInit {
     { title: 'Email', type: 'email' },
     { title: 'Password', type: 'password' },
   ];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

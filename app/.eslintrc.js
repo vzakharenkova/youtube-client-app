@@ -33,6 +33,7 @@ module.exports = {
             style: 'kebab-case',
           },
         ],
+        'no-console': ['warn', { allow: ['warn', 'error'] }],
         '@typescript-eslint/no-useless-constructor': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         '@angular-eslint/no-empty-lifecycle-method': 'off',

@@ -55,6 +55,4 @@ export class AuthorizationService {
     }
     return this.userName$.getValue();
   }
-
-  constructor() {}
 }

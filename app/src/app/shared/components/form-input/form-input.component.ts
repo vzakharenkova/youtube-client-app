@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
 import { InputPropsModel } from '../../models/shared.model';
@@ -8,7 +8,7 @@ import { InputPropsModel } from '../../models/shared.model';
   templateUrl: './form-input.component.html',
   styleUrls: ['./form-input.component.scss'],
 })
-export class FormInputComponent implements OnInit {
+export class FormInputComponent {
   @Input() inputProps!: InputPropsModel;
 
   value = '';
@@ -25,6 +25,4 @@ export class FormInputComponent implements OnInit {
   }
 
   constructor(private readonly authService: AuthorizationService) {}
-
-  ngOnInit(): void {}
 }
