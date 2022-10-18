@@ -13,6 +13,8 @@ export class DescriptionCardComponent implements OnInit {
 
   public video!: VideoItem;
 
+  public isLoaded = false;
+
   constructor(
     public route: ActivatedRoute,
     private readonly searchService: SearchService,
@@ -25,6 +27,7 @@ export class DescriptionCardComponent implements OnInit {
     });
     this.searchService.getVideoById(this.videoId).subscribe((video) => {
       this.video = <VideoItem>video.items[0];
+      this.isLoaded = true;
     });
   }
 
