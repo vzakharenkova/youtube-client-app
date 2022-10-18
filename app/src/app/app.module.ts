@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,7 @@ import { ButtonModule } from './shared/components/button/button.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     YoutubeModule,
     AuthorizationModule,
     ErrorModule,

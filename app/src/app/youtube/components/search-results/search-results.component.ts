@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchItem } from 'src/app/shared/models/search-item.model';
+import { VideoItem } from 'src/app/shared/models/video-item.model';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { SearchService } from '../../services/search.service';
 
@@ -9,7 +9,7 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit {
-  videoResult: SearchItem[] = [];
+  videoResult: VideoItem[] = [];
 
   constructor(private readonly searchService: SearchService, private filter: FilterPipe) {}
 
@@ -24,7 +24,7 @@ export class SearchResultsComponent implements OnInit {
     );
   }
 
-  identify(_index: number, item: SearchItem) {
+  identify(_index: number, item: VideoItem) {
     return item.id;
   }
 }

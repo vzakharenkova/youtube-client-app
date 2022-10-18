@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchItem } from 'src/app/shared/models/search-item.model';
 import { SortingType, SortingOrder } from 'src/app/shared/models/shared.model';
+import { VideoItem } from 'src/app/shared/models/video-item.model';
 import { SearchService } from 'src/app/youtube/services/search.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { SearchService } from 'src/app/youtube/services/search.service';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
-  currentVideoList: SearchItem[] = [];
+  currentVideoList: VideoItem[] = [];
 
   sortTerm = '';
 

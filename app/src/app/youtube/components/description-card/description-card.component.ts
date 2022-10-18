@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { mockedData } from 'src/app/mocked-data';
-import { SearchItem } from 'src/app/shared/models/search-item.model';
+import { VideoItem } from 'src/app/shared/models/video-item.model';
 import { SearchService } from '../../services/search.service';
 
 @Component({
@@ -12,7 +11,7 @@ import { SearchService } from '../../services/search.service';
 export class DescriptionCardComponent implements OnInit {
   public videoId!: string;
 
-  public video!: SearchItem;
+  public video!: VideoItem;
 
   constructor(
     public route: ActivatedRoute,
@@ -24,10 +23,9 @@ export class DescriptionCardComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.videoId = params['id'];
     });
-    // this.video = this.searchService.videos$
-    //   .getValue()
-    //   .find((item) => item.id === this.videoId) as SearchItem;
-    this.video = mockedData.items.find((item) => item.id === this.videoId) as SearchItem;
+    this.searchService.getVideoById(this.videoId).subscribe((video) => {
+      this.video = <VideoItem>video.items[0];
+    });
   }
 
   onBackClick() {
