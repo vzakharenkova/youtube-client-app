@@ -18,7 +18,8 @@ export class SearchInputComponent {
 
   videoResult: SearchItem[] = [];
 
-  onSearchClick(): void {
+  onSearch(term: string): void {
+    this.searchTerm = term;
     if (
       (this.searchTerm.length && this.searchTerm !== this.previousSearchTerm) ||
       this.router.url !== NavRoute.Main

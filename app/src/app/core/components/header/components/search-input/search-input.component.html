@@ -3,7 +3,7 @@
     type="search"
     class="search-input"
     placeholder="What are you want to find out?"
-    [(ngModel)]="searchTerm"
+    [ngModel]="searchTerm"
+    (ngModelChange)="onSearch($event)"
   />
-  <button class="search-btn" (click)="onSearchClick()">search</button>
 </div>
