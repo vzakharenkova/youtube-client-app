@@ -1,6 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+
+import { BehaviorSubject, catchError, retry, throwError } from 'rxjs';
 import { SearchItem } from 'src/app/shared/models/search-item.model';
 import { SearchResponse } from 'src/app/shared/models/search-response.model';
 import { SortingOrder, SortingType } from 'src/app/shared/models/shared.model';
@@ -39,19 +40,35 @@ export class SearchService {
     const options = {
       params: urlParams,
     };
-    this.http.get<SearchResponse>(this.baseSearchUrl, options).subscribe((data) => {
-      const ids = (<SearchItem[]>data.items).map((item) => item.id.videoId).join(',');
-      const urlParamsStat = new HttpParams()
-        .set('part', 'snippet,statistics')
-        .set('id', ids)
-        .set('key', this.apiKey);
-      const optionsStat = {
-        params: urlParamsStat,
-      };
-      this.http.get<SearchResponse>(this.baseVideoUrl, optionsStat).subscribe((videos) => {
-        this.changeVideos(<VideoItem[]>videos.items);
+    this.http
+      .get<SearchResponse>(this.baseSearchUrl, options)
+      .pipe(retry(3), catchError(this.handleError))
+      .subscribe((data) => {
+        const ids = (<SearchItem[]>data.items).map((item) => item.id.videoId).join(',');
+        const urlParamsStat = new HttpParams()
+          .set('part', 'snippet,statistics')
+          .set('id', ids)
+          .set('key', this.apiKey);
+        const optionsStat = {
+          params: urlParamsStat,
+        };
+        this.http
+          .get<SearchResponse>(this.baseVideoUrl, optionsStat)
+          .pipe(retry(3), catchError(this.handleError))
+          .subscribe((videos) => {
+            this.changeVideos(<VideoItem[]>videos.items);
+          });
       });
-    });
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.error('An error occurred:', error.error);
+    } else {
+      console.error(`Backend returned code ${error.status}, body was: `, error.error);
+    }
+
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
   public getVideoById(id: string) {
