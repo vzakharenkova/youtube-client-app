@@ -26,7 +26,7 @@ export class SearchService {
   private httpConfig = {
     baseSearchUrl: 'https://youtube.googleapis.com/youtube/v3/search',
     baseVideoUrl: 'https://youtube.googleapis.com/youtube/v3/videos',
-    apiKey: 'AIzaSyC-6Z6zsozZAvS4OO9jVAmcZuzbVyKU-GU',
+    apiKey: 'AIzaSyBfCoKD_ej28KSsNdQUqxxxJJ7MnUh5iyc',
     maxResult: 20,
   };
 
