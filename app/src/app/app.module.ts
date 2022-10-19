@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import { ErrorModule } from './error/error/error.module';
 import { FilterPipe } from './youtube/pipes/filter.pipe';
 import { YoutubeModule } from './youtube/youtube.module';
 import { ButtonModule } from './shared/components/button/button.module';
+import { SearchInterceptorService } from './youtube/services/search-Interceptor-service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,13 @@ import { ButtonModule } from './shared/components/button/button.module';
   ],
   exports: [],
 
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SearchInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
