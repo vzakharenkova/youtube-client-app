@@ -20,10 +20,13 @@ export class AuthorizationService {
         this.userToken$.next(
           this.loginForm$.getValue()['login'] + this.loginForm$.getValue()['password'],
         );
+        this.userName$.next(this.loginForm$.getValue()['login']);
       }
     } else {
       this.userToken$.next('');
       localStorage.removeItem('token');
+      this.userName$.next(DefaultAuthParam.DefaultUserName);
+      localStorage.removeItem('userName');
     }
   }
 
@@ -35,24 +38,13 @@ export class AuthorizationService {
     const token = localStorage.getItem('token');
     if (token) {
       this.userToken$.next(token);
+      this.userName$.next(<string>localStorage.getItem('userName'));
     }
     return this.userToken$.getValue();
   }
 
-  setUserName(login: boolean) {
-    if (login) {
-      this.userName$.next(this.loginForm$.getValue()['login']);
-    } else {
-      this.userName$.next(DefaultAuthParam.DefaultUserName);
-      localStorage.removeItem('userName');
-    }
-  }
-
-  getUserName() {
-    const userName = localStorage.getItem('userName');
-    if (userName) {
-      this.userName$.next(userName);
-    }
-    return this.userName$.getValue();
+  saveUserData() {
+    localStorage.setItem('token', this.userToken$.getValue());
+    localStorage.setItem('userName', this.userName$.getValue());
   }
 }

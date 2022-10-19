@@ -27,7 +27,6 @@ export class AuthGuard implements CanLoad, CanActivate {
     if (!this.authService.getUserToken().length) {
       this.router.navigateByUrl(NavRoute.Login);
     }
-    this.authService.getUserName();
 
     return !!this.authService.getUserToken().length;
   }
@@ -39,8 +38,6 @@ export class AuthGuard implements CanLoad, CanActivate {
     if (!this.authService.getUserToken().length) {
       this.router.navigateByUrl(NavRoute.Login);
     }
-    this.authService.getUserName();
-
     return !!this.authService.getUserToken().length;
   }
 }

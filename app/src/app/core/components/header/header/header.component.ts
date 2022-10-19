@@ -19,7 +19,6 @@ export class HeaderComponent {
 
   public goToLoginPage() {
     if (this.authService.getUserToken().length) {
-      this.authService.setUserName(false);
       this.authService.setUserToken(false);
     }
     this.router.navigateByUrl(NavRoute.Login);

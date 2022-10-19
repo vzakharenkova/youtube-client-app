@@ -22,10 +22,8 @@ export class LoginComponent {
     e.preventDefault();
     this.authService.setUserToken(true);
     if (this.authService.getUserToken().length) {
-      this.authService.setUserName(true);
       this.router.navigateByUrl(NavRoute.Main);
-      localStorage.setItem('token', this.authService.getUserToken());
-      localStorage.setItem('userName', this.authService.getUserName());
+      this.authService.saveUserData();
     }
   }
 
