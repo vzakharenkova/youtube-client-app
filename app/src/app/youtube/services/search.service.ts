@@ -23,37 +23,28 @@ export class SearchService {
 
   public sortedBy$ = new BehaviorSubject<SortingType | null>(null);
 
-  private baseSearchUrl = 'https://youtube.googleapis.com/youtube/v3/search';
-
-  private baseVideoUrl = 'https://youtube.googleapis.com/youtube/v3/videos';
-
-  private apiKey = 'AIzaSyA6gDy7eIZRXroodDNUz6EKq_yd0tQiIAk';
-
-  private maxResult = 15;
+  private httpConfig = {
+    baseSearchUrl: 'https://youtube.googleapis.com/youtube/v3/search',
+    baseVideoUrl: 'https://youtube.googleapis.com/youtube/v3/videos',
+    apiKey: 'AIzaSyA6gDy7eIZRXroodDNUz6EKq_yd0tQiIAk',
+    maxResult: 20,
+  };
 
   public getVideos(searchTerm: string) {
     const urlParams = new HttpParams()
       .set('part', 'snippet')
-      .set('maxResults', this.maxResult)
+      .set('maxResults', this.httpConfig.maxResult)
       .set('q', searchTerm)
-      .set('key', this.apiKey);
+      .set('key', this.httpConfig.apiKey);
     const options = {
       params: urlParams,
     };
     this.http
-      .get<SearchResponse>(this.baseSearchUrl, options)
+      .get<SearchResponse>(this.httpConfig.baseSearchUrl, options)
       .pipe(retry(3), catchError(this.handleError))
       .subscribe((data) => {
         const ids = (<SearchItem[]>data.items).map((item) => item.id.videoId).join(',');
-        const urlParamsStat = new HttpParams()
-          .set('part', 'snippet,statistics')
-          .set('id', ids)
-          .set('key', this.apiKey);
-        const optionsStat = {
-          params: urlParamsStat,
-        };
-        this.http
-          .get<SearchResponse>(this.baseVideoUrl, optionsStat)
+        this.getVideoById(ids)
           .pipe(retry(3), catchError(this.handleError))
           .subscribe((videos) => {
             this.changeVideos(<VideoItem[]>videos.items);
@@ -75,12 +66,12 @@ export class SearchService {
     const urlParamsStat = new HttpParams()
       .set('part', 'snippet,statistics')
       .set('id', id)
-      .set('key', this.apiKey);
+      .set('key', this.httpConfig.apiKey);
     const optionsStat = {
       params: urlParamsStat,
     };
 
-    return this.http.get<SearchResponse>(this.baseVideoUrl, optionsStat);
+    return this.http.get<SearchResponse>(this.httpConfig.baseVideoUrl, optionsStat);
   }
 
   public changeSearchTerm(term: string) {
