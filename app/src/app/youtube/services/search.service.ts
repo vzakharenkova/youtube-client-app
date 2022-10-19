@@ -12,6 +12,8 @@ import { VideoItem } from 'src/app/shared/models/video-item.model';
 export class SearchService {
   constructor(private http: HttpClient) {}
 
+  public searchTerm$ = new BehaviorSubject<string>('');
+
   public videos$ = new BehaviorSubject<VideoItem[]>([]);
 
   public sortTerm$ = new BehaviorSubject<string>('');
@@ -62,6 +64,10 @@ export class SearchService {
     };
 
     return this.http.get<SearchResponse>(this.baseVideoUrl, optionsStat);
+  }
+
+  public changeSearchTerm(term: string) {
+    this.searchTerm$.next(term);
   }
 
   public changeVideos(videos: VideoItem[]) {

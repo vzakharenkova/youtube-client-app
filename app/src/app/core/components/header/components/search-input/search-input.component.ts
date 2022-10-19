@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
 import { NavRoute } from 'src/app/shared/models/shared.model';
-import { VideoItem } from 'src/app/shared/models/video-item.model';
 import { SearchService } from 'src/app/youtube/services/search.service';
 
 @Component({
@@ -10,36 +10,21 @@ import { SearchService } from 'src/app/youtube/services/search.service';
   styleUrls: ['./search-input.component.scss'],
 })
 export class SearchInputComponent implements OnInit {
-  searchTerm: string = '';
-
-  previousSearchTerm: string = '';
-
-  videoResult: VideoItem[] = [];
-
-  onSearch(term: string): void {
-    this.searchTerm = term;
-    if (
-      (this.searchTerm.length && this.searchTerm !== this.previousSearchTerm) ||
-      this.router.url !== NavRoute.Main
-    ) {
-      if (this.router.url !== NavRoute.Main) {
-        this.router.navigateByUrl(NavRoute.Main);
-      }
-      this.previousSearchTerm = this.searchTerm;
-      // this.videoResult = mockedData.items.filter(
-      //   (item) =>
-      //     item.snippet.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      //     item.snippet.description.toLowerCase().includes(this.searchTerm.toLowerCase()),
-      // );
-      // const data: SearchResponse = this.searchService.getVideos(term);
-      // this.videoResult =  data.spi
-      // this.searchService.changeVideos(this.videoResult);
-      this.searchService.getVideos(term);
+  onInputValueChange(event: Event): void {
+    this.searchService.changeSearchTerm((<HTMLInputElement>event.target).value);
+    if (this.router.url !== NavRoute.Main) {
+      this.router.navigateByUrl(NavRoute.Main);
     }
   }
 
   ngOnInit(): void {
-    this.searchService.videos$.subscribe((videos) => (this.videoResult = videos));
+    this.searchService.searchTerm$
+      .pipe(
+        debounceTime(800),
+        distinctUntilChanged(),
+        filter((term: string) => term.trim().length >= 3),
+      )
+      .subscribe((term) => this.searchService.getVideos(term));
   }
 
   constructor(private readonly searchService: SearchService, private router: Router) {}
