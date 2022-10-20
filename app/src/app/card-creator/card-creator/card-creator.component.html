@@ -1,1 +1,117 @@
-<p>card-creator works!</p>
+<div class="cardCreator">
+  <h2 class="form_title">Create new card</h2>
+  <form class="form" [formGroup]="cardCreationForm">
+    <div class="input_field">
+      <label class="label" for="title">Title<sup>*</sup></label>
+      <input
+        class="input"
+        type="text"
+        id="title"
+        formControlName="videoTitle"
+        [ngStyle]="addErrorStyle(_videoTitle)"
+      />
+      <div *ngIf="_videoTitle?.invalid && (_videoTitle?.touched || _videoTitle?.dirty)">
+        <span *ngIf=" _videoTitle?.errors?.['minlength']" class="error_msg"
+          >The title is too short</span
+        >
+        <span *ngIf=" _videoTitle?.errors?.['maxlength']" class="error_msg"
+          >The title is too long</span
+        >
+        <span *ngIf="_videoTitle?.errors?.['required']" class="error_msg"
+          >Please enter a title</span
+        >
+      </div>
+    </div>
+    <div class="input_field">
+      <label class="label" for="description">Description</label>
+      <input
+        class="input"
+        type="text"
+        id="description"
+        formControlName="videoDescription"
+        [ngStyle]="addErrorStyle(_videoDescription)"
+      />
+      <div
+        *ngIf="
+          _videoDescription?.invalid && (_videoDescription?.touched || _videoDescription?.dirty)
+        "
+      >
+        <span *ngIf=" _videoDescription?.errors?.['maxlength']" class="error_msg"
+          >The description is too long</span
+        >
+      </div>
+    </div>
+    <div class="input_field">
+      <label class="label" for="img">Image (link)<sup>*</sup></label>
+      <input
+        class="input"
+        type="text"
+        id="img"
+        formControlName="videoImg"
+        [ngStyle]="addErrorStyle(_videoImg)"
+      />
+      <div *ngIf="_videoImg?.invalid && (_videoImg?.touched || _videoImg?.dirty)">
+        <span *ngIf=" _videoImg?.errors?.['pattern']" class="error_msg"
+          >The image link is invalid</span
+        >
+        <span *ngIf=" _videoImg?.errors?.['required']" class="error_msg"
+          >Please enter a link to the image</span
+        >
+      </div>
+    </div>
+    <div class="input_field">
+      <label class="label" for="link">Video (link)<sup>*</sup></label>
+      <input
+        class="input"
+        type="text"
+        id="link"
+        formControlName="videoLink"
+        [ngStyle]="addErrorStyle(_videoLink)"
+      />
+      <div *ngIf="_videoLink?.invalid && (_videoLink?.touched || _videoLink?.dirty)">
+        <span *ngIf=" _videoLink?.errors?.['pattern']" class="error_msg"
+          >The video link is invalid</span
+        >
+        <span *ngIf=" _videoLink?.errors?.['required']" class="error_msg"
+          >Please enter a link to the video</span
+        >
+      </div>
+    </div>
+    <div class="input_field">
+      <label class="label" for="date">Creation Date<sup>*</sup></label>
+      <input
+        class="input"
+        type="date"
+        id="date"
+        formControlName="creationDate"
+        [ngStyle]="addErrorStyle(_creationDate)"
+      />
+      <div *ngIf="_creationDate?.invalid && (_creationDate?.touched || _creationDate?.dirty)">
+        <span
+          *ngIf="_creationDate?.errors?.['invalidDate'] && !_creationDate?.errors?.['required']"
+          class="error_msg"
+          >The date is invalid</span
+        >
+        <span *ngIf=" _creationDate?.errors?.['required']" class="error_msg"
+          >Please enter a creation date</span
+        >
+      </div>
+    </div>
+  </form>
+  <div class="btn_field">
+    <button
+      class="submit_btn"
+      type="submit"
+      (click)="onSubmit($event)"
+      [disabled]="
+        !!_videoTitle?.errors ||
+        !!_videoDescription?.errors ||
+        !!_videoImg?.errors ||
+        !!_videoLink?.errors ||
+        !!_creationDate?.errors
+      "
+    >
+      Create card
+    </button>
+  </div>
+</div>

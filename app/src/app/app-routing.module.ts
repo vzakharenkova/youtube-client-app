@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CardCreatorComponent } from './card-creator/card-creator/card-creator.component';
 import { AuthGuard } from './core/guards/auth-guard.guard';
 
 const routes: Routes = [
@@ -14,6 +15,11 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () =>
       import('./authorization/authorization.module').then((m) => m.AuthorizationModule),
+  },
+  {
+    path: 'admin',
+    component: CardCreatorComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

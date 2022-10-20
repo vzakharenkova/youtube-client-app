@@ -18,9 +18,9 @@ export class HeaderComponent {
   constructor(private router: Router, private readonly authService: AuthorizationService) {}
 
   public goToLoginPage() {
-    if (this.authService.getUserToken().length) {
-      this.authService.setUserToken(false);
+    if (!this.authService.getUserToken().length) {
+      this.router.navigateByUrl(NavRoute.Login);
+      // this.authService.setUserToken(false);
     }
-    this.router.navigateByUrl(NavRoute.Login);
   }
 }
