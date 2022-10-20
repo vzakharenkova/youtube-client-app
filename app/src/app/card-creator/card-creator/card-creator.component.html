@@ -99,6 +99,7 @@
     </div>
   </form>
   <div class="btn_field">
+    <div *ngIf="isCreated" [ngStyle]="{ color: 'green', 'margin-right': '20px' }">CREATED</div>
     <button
       class="submit_btn"
       type="submit"

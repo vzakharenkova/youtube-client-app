@@ -9,6 +9,8 @@ import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from
 export class CardCreatorComponent implements OnInit {
   cardCreationForm!: FormGroup;
 
+  isCreated = false;
+
   private initForm() {
     this.cardCreationForm = this.formBuilder.group({
       videoTitle: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -65,6 +67,8 @@ export class CardCreatorComponent implements OnInit {
 
   onSubmit(e: Event) {
     e.preventDefault();
+    this.isCreated = true;
+    setTimeout(() => (this.isCreated = false), 2000);
   }
 
   constructor(private formBuilder: FormBuilder) {}
