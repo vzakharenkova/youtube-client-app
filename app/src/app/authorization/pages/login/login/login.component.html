@@ -1,8 +1,70 @@
 <div class="login">
   <h2 class="form_title">Login</h2>
-  <app-form [inputProps]="inputProps"> </app-form>
+  <form class="form" [formGroup]="loginForm">
+    <div class="input_field">
+      <label class="label" for="login">Login (email)</label>
+      <input
+        class="input"
+        type="email"
+        id="login"
+        formControlName="login"
+        [ngModel]="userLogin"
+        (input)="onChange($event)"
+        [ngStyle]="
+          _login?.invalid && (_login?.touched || _login?.dirty) ? { border: 'red 1px solid' } : {}
+        "
+      />
+      <div *ngIf="_login?.invalid && (_login?.touched || _login?.dirty)">
+        <span *ngIf="!!userLogin.length && _login?.errors?.['pattern']" class="error_msg"
+          >The login email is invalid</span
+        >
+        <span *ngIf="_login?.errors?.['required'] && !userLogin.length" class="error_msg"
+          >Please enter a login email</span
+        >
+      </div>
+    </div>
+    <div class="input_field">
+      <label class="label" for="password">Password</label>
+      <input
+        class="input"
+        type="password"
+        id="password"
+        formControlName="password"
+        [ngModel]="userPassword"
+        (input)="onChange($event)"
+        [ngStyle]="
+          _password?.invalid && (_password?.touched || _password?.dirty)
+            ? { border: 'red 1px solid' }
+            : {}
+        "
+      />
+      <div *ngIf="_password?.invalid && (_password?.touched || _password?.dirty)">
+        <span
+          *ngIf="_password?.errors?.['minlength'] || _password?.errors?.['pattern']"
+          class="error_msg"
+          >Your password isn't strong enough
+          <ul class="recs_list">
+            <li>- at least 8 characters</li>
+            <li>- a mixture of both uppercase and lowercase letters</li>
+            <li>- a mixture of letters and numbers</li>
+            <li>- inclusion of at least one special character, e.g., ! @ # ? ]</li>
+          </ul></span
+        >
+        <span *ngIf="_password?.errors?.['required'] && !userPassword.length" class="error_msg"
+          >Please enter a password</span
+        >
+      </div>
+    </div>
+  </form>
   <div class="btn_field">
     <a class="link" [routerLink]="[this.navRoute.Registration]">Registration</a>
-    <button class="submit_btn" type="submit" (click)="onSubmit($event)">Login</button>
+    <button
+      class="submit_btn"
+      type="submit"
+      (click)="onSubmit($event)"
+      [disabled]="!!_password?.errors || !!_login?.errors"
+    >
+      Login
+    </button>
   </div>
 </div>

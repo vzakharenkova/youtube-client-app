@@ -10,8 +10,6 @@ export class AuthorizationService {
 
   loginForm$ = new BehaviorSubject<{ [x: string]: string }>({ login: '', password: '' });
 
-  lоgin$ = new BehaviorSubject<string>('');
-
   userToken$ = new BehaviorSubject<string>('');
 
   setUserToken(login: boolean) {
@@ -27,6 +25,7 @@ export class AuthorizationService {
       localStorage.removeItem('token');
       this.userName$.next(DefaultAuthParam.DefaultUserName);
       localStorage.removeItem('userName');
+      this.setValue(this.loginForm$, { login: '', password: '' });
     }
   }
 
