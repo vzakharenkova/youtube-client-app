@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
-import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
+import { InputPropsModel, NavRoute, StorageItem } from 'src/app/shared/models/shared.model';
 
 @Component({
   selector: 'app-login',
@@ -9,27 +9,26 @@ import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  auth = this.authService.loginForm$;
+  constructor(private readonly authService: AuthorizationService, private router: Router) {}
 
-  inputProps: InputPropsModel[] = [
+  public auth = this.authService.loginForm$;
+
+  public inputProps: InputPropsModel[] = [
     { title: 'Login', type: 'text', auth: this.auth },
     { title: 'Password', type: 'password', auth: this.auth },
   ];
 
-  onSubmit(e: Event) {
+  public onSubmit(e: Event) {
     e.preventDefault();
-    this.authService.setUserToken(true);
-    if (this.authService.getUserToken().length) {
-      this.authService.setUserName(true);
+    this.authService.setUserData(true);
+    if (this.authService.userToken.length) {
       this.router.navigateByUrl(NavRoute.Main);
-      localStorage.setItem('token', this.authService.getUserToken());
-      localStorage.setItem('userName', this.authService.getUserName());
+      localStorage.setItem(StorageItem.Token, this.authService.userToken);
+      localStorage.setItem(StorageItem.UserName, this.authService.userName);
     }
   }
 
   public onRegistrationBtnClick() {
     this.router.navigateByUrl(NavRoute.Registration);
   }
-
-  constructor(private readonly authService: AuthorizationService, private router: Router) {}
 }

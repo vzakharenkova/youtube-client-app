@@ -21,7 +21,7 @@ export class AuthGuard implements CanLoad, CanActivate {
   constructor(private readonly authService: AuthorizationService, private router: Router) {}
 
   canLoad(route: Route, segments: UrlSegment[]): boolean {
-    if (!this.authService.getUserToken().length) {
+    if (!this.authService.getUserData()) {
       this.router.navigateByUrl(NavRoute.Login);
     }
 
@@ -29,7 +29,7 @@ export class AuthGuard implements CanLoad, CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (!this.authService.getUserToken().length) {
+    if (!this.authService.getUserData()) {
       this.router.navigateByUrl(NavRoute.Login);
     }
 
