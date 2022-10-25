@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { DefaultAuthParam } from 'src/app/authorization/models/authorization.model';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
 
@@ -10,11 +11,15 @@ import { AuthorizationService } from 'src/app/authorization/services/authorizati
 export class LoginInfoComponent implements OnInit {
   constructor(private readonly authService: AuthorizationService) {}
 
-  defaultUserName = DefaultAuthParam.DefaultUserName;
+  public defaultUserName = DefaultAuthParam.DefaultUserName;
 
-  userName!: string;
+  public userName!: BehaviorSubject<string>;
 
   ngOnInit(): void {
-    this.authService.userName$.subscribe((name) => (this.userName = name));
+    this.userName = this.authService.userName$;
+  }
+
+  public get currentUserName() {
+    return this.userName.getValue();
   }
 }

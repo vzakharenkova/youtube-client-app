@@ -7,21 +7,20 @@ import { DefaultAuthParam } from '../models/authorization.model';
   providedIn: 'root',
 })
 export class AuthorizationService {
-  userName$ = new BehaviorSubject<string>(DefaultAuthParam.DefaultUserName);
+  public userName$ = new BehaviorSubject<string>(DefaultAuthParam.DefaultUserName);
 
-  loginForm$ = new BehaviorSubject<FormModel>({ login: '', password: '' });
+  public loginForm$ = new BehaviorSubject<FormModel>({ login: '', password: '' });
 
-  lоgin$ = new BehaviorSubject<string>('');
+  public userToken$ = new BehaviorSubject<string>('');
 
-  userToken$ = new BehaviorSubject<string>('');
-
-  setUserData(login: boolean) {
+  public setUserData(login: boolean) {
     if (login) {
       if (Object.values(this.loginForm).every((v) => v.length > 0)) {
-        this.updateUserData(
-          this.loginForm['login'] + this.loginForm['password'],
-          this.loginForm['login'],
-        );
+        const newToken = this.loginForm['login'] + this.loginForm['password'];
+        const newUserName = this.loginForm['login'];
+        this.updateUserData(newToken, newUserName);
+        localStorage.setItem(StorageItem.Token, newToken);
+        localStorage.setItem(StorageItem.UserName, newUserName);
       }
     } else {
       this.updateUserData(DefaultAuthParam.DefaultToken, DefaultAuthParam.DefaultUserName);
@@ -47,11 +46,11 @@ export class AuthorizationService {
     this.userName$.next(newName);
   }
 
-  setValue(value: FormModel) {
+  public setValue(value: FormModel) {
     this.loginForm$.next(value);
   }
 
-  getUserData() {
+  public getUserData() {
     if (
       this.userName === DefaultAuthParam.DefaultUserName &&
       this.userToken === DefaultAuthParam.DefaultToken

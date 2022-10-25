@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
-import { InputPropsModel, NavRoute, StorageItem } from 'src/app/shared/models/shared.model';
+import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
 
 @Component({
   selector: 'app-login',
@@ -23,8 +23,6 @@ export class LoginComponent {
     this.authService.setUserData(true);
     if (this.authService.userToken.length) {
       this.router.navigateByUrl(NavRoute.Main);
-      localStorage.setItem(StorageItem.Token, this.authService.userToken);
-      localStorage.setItem(StorageItem.UserName, this.authService.userName);
     }
   }
 

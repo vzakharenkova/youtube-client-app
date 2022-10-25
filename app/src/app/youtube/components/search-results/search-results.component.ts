@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { SearchItem } from 'src/app/shared/models/search-item.model';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { SearchService } from '../../services/search.service';
@@ -11,16 +12,17 @@ import { SearchService } from '../../services/search.service';
 export class SearchResultsComponent implements OnInit {
   constructor(private readonly searchService: SearchService, private filter: FilterPipe) {}
 
-  public videoResult: SearchItem[] = [];
+  public videoResult!: Observable<SearchItem[]>;
 
   ngOnInit(): void {
-    this.searchService.videos$.subscribe(
-      (videos) =>
-        (this.videoResult = this.filter.transform(videos, {
+    this.videoResult = this.searchService.videos$.pipe(
+      map((videos) =>
+        this.filter.transform(videos, {
           term: this.searchService.sortTerm$.getValue(),
           sortingType: this.searchService.sortedBy$.getValue(),
           sortingOrder: this.searchService.sortingOrder$.getValue(),
-        })),
+        }),
+      ),
     );
   }
 
