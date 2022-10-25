@@ -6,7 +6,7 @@ import { DefaultAuthParam } from '../models/authorization.model';
   providedIn: 'root',
 })
 export class AuthorizationService {
-  userName$ = new BehaviorSubject<string | DefaultAuthParam>(DefaultAuthParam.DefaultUserName);
+  userName$ = new BehaviorSubject<string>(DefaultAuthParam.DefaultUserName);
 
   loginForm$ = new BehaviorSubject<{ [x: string]: string }>({ login: '', password: '' });
 
@@ -25,6 +25,26 @@ export class AuthorizationService {
       this.userToken$.next('');
       localStorage.removeItem('token');
     }
+  }
+
+  public get loginForm() {
+    return this.loginForm$.getValue();
+  }
+
+  public get userToken() {
+    return this.userToken$.getValue();
+  }
+
+  public get userName() {
+    return this.userName$.getValue();
+  }
+
+  private updateUsertoken(newToken: string) {
+    this.userToken$.next(newToken);
+  }
+
+  private updateUserName(newName: string) {
+    this.userToken$.next(newName);
   }
 
   setValue(ref: BehaviorSubject<{ [x: string]: string }>, value: { [x: string]: string }) {

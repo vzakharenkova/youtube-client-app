@@ -11,8 +11,6 @@ import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
 export class LoginComponent {
   auth = this.authService.loginForm$;
 
-  navRoute = NavRoute;
-
   inputProps: InputPropsModel[] = [
     { title: 'Login', type: 'text', auth: this.auth },
     { title: 'Password', type: 'password', auth: this.auth },
@@ -27,6 +25,10 @@ export class LoginComponent {
       localStorage.setItem('token', this.authService.getUserToken());
       localStorage.setItem('userName', this.authService.getUserName());
     }
+  }
+
+  public onRegistrationBtnClick() {
+    this.router.navigateByUrl(NavRoute.Registration);
   }
 
   constructor(private readonly authService: AuthorizationService, private router: Router) {}

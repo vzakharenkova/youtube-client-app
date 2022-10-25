@@ -10,27 +10,25 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./description-card.component.scss'],
 })
 export class DescriptionCardComponent implements OnInit {
-  public videoId!: string;
-
-  public video!: SearchItem;
-
   constructor(
     public route: ActivatedRoute,
     private readonly searchService: SearchService,
     private router: Router,
   ) {}
 
+  public videoId!: string;
+
+  public video!: SearchItem;
+
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.videoId = params['id'];
     });
-    // this.video = this.searchService.videos$
-    //   .getValue()
-    //   .find((item) => item.id === this.videoId) as SearchItem;
+
     this.video = mockedData.items.find((item) => item.id === this.videoId) as SearchItem;
   }
 
-  onBackClick() {
+  public onBackClick() {
     this.router.navigateByUrl('/youtube');
   }
 }

@@ -9,6 +9,8 @@ import { SearchService } from 'src/app/youtube/services/search.service';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
+  constructor(private readonly searchService: SearchService) {}
+
   currentVideoList: SearchItem[] = [];
 
   sortTerm = '';
@@ -18,6 +20,10 @@ export class SettingsComponent implements OnInit {
   sortingOrder: SortingOrder | null = null;
 
   sortingType: SortingType | null = null;
+
+  ngOnInit(): void {
+    this.searchService.videos$.subscribe((videos) => (this.currentVideoList = videos));
+  }
 
   onSortClick(by: SortingType) {
     if (this.sortingType === null || this.sortingType !== by) {
@@ -37,11 +43,5 @@ export class SettingsComponent implements OnInit {
     this.sortTerm = str;
     this.searchService.changeSortTerm(this.sortTerm);
     this.searchService.changeVideos(this.currentVideoList);
-  }
-
-  constructor(private readonly searchService: SearchService) {}
-
-  ngOnInit(): void {
-    this.searchService.videos$.subscribe((videos) => (this.currentVideoList = videos));
   }
 }

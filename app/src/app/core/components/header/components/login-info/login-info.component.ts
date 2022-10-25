@@ -8,11 +8,11 @@ import { AuthorizationService } from 'src/app/authorization/services/authorizati
   styleUrls: ['./login-info.component.scss'],
 })
 export class LoginInfoComponent implements OnInit {
+  constructor(private readonly authService: AuthorizationService) {}
+
   defaultUserName = DefaultAuthParam.DefaultUserName;
 
-  userName: string | DefaultAuthParam = DefaultAuthParam.DefaultUserName;
-
-  constructor(private readonly authService: AuthorizationService) {}
+  userName!: string;
 
   ngOnInit(): void {
     this.authService.userName$.subscribe((name) => (this.userName = name));

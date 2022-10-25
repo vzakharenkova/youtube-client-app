@@ -9,9 +9,9 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit {
-  videoResult: SearchItem[] = [];
-
   constructor(private readonly searchService: SearchService, private filter: FilterPipe) {}
+
+  public videoResult: SearchItem[] = [];
 
   ngOnInit(): void {
     this.searchService.videos$.subscribe(
@@ -24,7 +24,7 @@ export class SearchResultsComponent implements OnInit {
     );
   }
 
-  identify(_index: number, item: SearchItem) {
+  public identify(_index: number, item: SearchItem) {
     return item.id;
   }
 }

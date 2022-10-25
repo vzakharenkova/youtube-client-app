@@ -8,4 +8,8 @@ import { InputPropsModel } from '../../models/shared.model';
 })
 export class FormComponent {
   @Input() inputProps!: InputPropsModel[];
+
+  public identify(_index: number, item: InputPropsModel) {
+    return item.title;
+  }
 }

@@ -12,6 +12,8 @@ import { SearchService } from 'src/app/youtube/services/search.service';
   styleUrls: ['./search-input.component.scss'],
 })
 export class SearchInputComponent {
+  constructor(private readonly searchService: SearchService, private router: Router) {}
+
   searchTerm: string = '';
 
   previousSearchTerm: string = '';
@@ -35,6 +37,4 @@ export class SearchInputComponent {
       this.searchService.changeVideos(this.videoResult);
     }
   }
-
-  constructor(private readonly searchService: SearchService, private router: Router) {}
 }

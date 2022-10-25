@@ -9,10 +9,10 @@ import { NavRoute } from 'src/app/shared/models/shared.model';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  settinsIsOpend = false;
+  settingsIsOpend = false;
 
   onToggleSettings() {
-    this.settinsIsOpend = !this.settinsIsOpend;
+    this.settingsIsOpend = !this.settingsIsOpend;
   }
 
   constructor(private router: Router, private readonly authService: AuthorizationService) {}

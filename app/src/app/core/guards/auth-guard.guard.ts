@@ -20,27 +20,19 @@ import { NavRoute } from 'src/app/shared/models/shared.model';
 export class AuthGuard implements CanLoad, CanActivate {
   constructor(private readonly authService: AuthorizationService, private router: Router) {}
 
-  canLoad(
-    route: Route,
-    segments: UrlSegment[],
-  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canLoad(route: Route, segments: UrlSegment[]): boolean {
     if (!this.authService.getUserToken().length) {
       this.router.navigateByUrl(NavRoute.Login);
     }
-    this.authService.getUserName();
 
-    return !!this.authService.getUserToken().length;
+    return !!this.authService.userToken.length;
   }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
-  ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (!this.authService.getUserToken().length) {
       this.router.navigateByUrl(NavRoute.Login);
     }
-    this.authService.getUserName();
 
-    return !!this.authService.getUserToken().length;
+    return !!this.authService.userToken.length;
   }
 }
