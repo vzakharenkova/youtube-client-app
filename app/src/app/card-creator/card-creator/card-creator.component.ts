@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { updateCustomUserCards } from 'src/app/redux/actions/app.actions';
+import { VideoListStateModel } from 'src/app/redux/state.models';
+import { CustomCardModel } from '../models/customCard.model';
 
 @Component({
   selector: 'app-card-creator',
@@ -7,9 +11,15 @@ import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from
   styleUrls: ['./card-creator.component.scss'],
 })
 export class CardCreatorComponent implements OnInit {
-  cardCreationForm!: FormGroup;
+  constructor(private formBuilder: FormBuilder, private store: Store<VideoListStateModel>) {}
 
-  isCreated = false;
+  public cardCreationForm!: FormGroup;
+
+  public isCreated = false;
+
+  ngOnInit() {
+    this.initForm();
+  }
 
   private initForm() {
     this.cardCreationForm = this.formBuilder.group({
@@ -61,19 +71,24 @@ export class CardCreatorComponent implements OnInit {
     return this.cardCreationForm.get('creationDate');
   }
 
-  addErrorStyle(target: AbstractControl<any, any> | null) {
+  public addErrorStyle(target: AbstractControl<any, any> | null) {
     return target?.invalid && (target?.touched || target?.dirty) ? { border: 'red 1px solid' } : {};
   }
 
-  onSubmit(e: Event) {
+  public onSubmit(e: Event) {
     e.preventDefault();
+
+    const customCard: CustomCardModel = {
+      title: this._videoTitle?.value,
+      description: this._videoDescription?.value,
+      imgLink: this._videoImg?.value,
+      videoLink: this._videoLink?.value,
+      creationDate: this._creationDate?.value,
+    };
+
     this.isCreated = true;
+    this.store.dispatch(updateCustomUserCards({ customCard }));
+    this.cardCreationForm.reset();
     setTimeout(() => (this.isCreated = false), 2000);
-  }
-
-  constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit() {
-    this.initForm();
   }
 }

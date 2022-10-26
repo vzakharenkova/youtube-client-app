@@ -1,7 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 import { BehaviorSubject, retry } from 'rxjs';
+import { updateSearchResult } from 'src/app/redux/actions/app.actions';
+import { VideoListStateModel } from 'src/app/redux/state.models';
 import { SearchItem } from 'src/app/shared/models/search-item.model';
 import { SearchResponse } from 'src/app/shared/models/search-response.model';
 import { SortingOrder, SortingType } from 'src/app/shared/models/shared.model';
@@ -11,11 +14,9 @@ import { VideoItem } from 'src/app/shared/models/video-item.model';
   providedIn: 'root',
 })
 export class SearchService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private store: Store<VideoListStateModel>) {}
 
   public searchTerm$ = new BehaviorSubject<string>('');
-
-  public videos$ = new BehaviorSubject<VideoItem[]>([]);
 
   public sortTerm$ = new BehaviorSubject<string>('');
 
@@ -50,7 +51,7 @@ export class SearchService {
         this.getVideoById(ids)
           .pipe(retry(3))
           .subscribe((videos) => {
-            this.changeVideos(<VideoItem[]>videos.items);
+            this.store.dispatch(updateSearchResult({ searchResult: <VideoItem[]>videos.items }));
           });
       });
   }
@@ -66,10 +67,6 @@ export class SearchService {
 
   public changeSearchTerm(term: string) {
     this.searchTerm$.next(term);
-  }
-
-  public changeVideos(videos: VideoItem[]) {
-    this.videos$.next(videos);
   }
 
   public changeSortTerm(sortTerm: string) {
