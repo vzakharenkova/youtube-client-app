@@ -10,12 +10,7 @@ import { SearchService } from 'src/app/youtube/services/search.service';
   styleUrls: ['./search-input.component.scss'],
 })
 export class SearchInputComponent implements OnInit {
-  onInputValueChange(event: Event): void {
-    this.searchService.changeSearchTerm((<HTMLInputElement>event.target).value);
-    if (this.router.url !== NavRoute.Main) {
-      this.router.navigateByUrl(NavRoute.Main);
-    }
-  }
+  constructor(private readonly searchService: SearchService, private router: Router) {}
 
   ngOnInit(): void {
     this.searchService.searchTerm$
@@ -25,5 +20,12 @@ export class SearchInputComponent implements OnInit {
         filter((term: string) => term.trim().length >= 3),
       )
       .subscribe((term) => this.searchService.getVideos(term));
+  }
+
+  public onInputValueChange(event: Event): void {
+    this.searchService.changeSearchTerm((<HTMLInputElement>event.target).value);
+    if (this.router.url !== NavRoute.Main) {
+      this.router.navigateByUrl(NavRoute.Main);
+    }
   }
 }

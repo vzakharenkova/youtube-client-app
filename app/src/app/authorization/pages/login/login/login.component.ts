@@ -23,7 +23,6 @@ export class LoginComponent {
     this.authService.setUserData(true);
     if (this.authService.userToken.length) {
       this.router.navigateByUrl(NavRoute.Main);
-      this.authService.saveUserData();
     }
   }
 
