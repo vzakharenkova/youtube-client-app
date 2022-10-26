@@ -21,6 +21,10 @@ export class DescriptionCardComponent implements OnInit {
     private router: Router,
   ) {}
 
+  public videoId!: string;
+
+  public video!: SearchItem;
+
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.videoId = params['id'];
@@ -31,7 +35,7 @@ export class DescriptionCardComponent implements OnInit {
     });
   }
 
-  onBackClick() {
+  public onBackClick() {
     this.router.navigateByUrl('/youtube');
   }
 }

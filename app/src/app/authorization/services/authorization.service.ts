@@ -1,50 +1,67 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { FormModel, StorageItem } from 'src/app/shared/models/shared.model';
 import { DefaultAuthParam } from '../models/authorization.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizationService {
-  userName$ = new BehaviorSubject<string | DefaultAuthParam>(DefaultAuthParam.DefaultUserName);
+  public userName$ = new BehaviorSubject<string>(DefaultAuthParam.DefaultUserName);
 
-  loginForm$ = new BehaviorSubject<{ [x: string]: string }>({ login: '', password: '' });
+  public loginForm$ = new BehaviorSubject<FormModel>({ login: '', password: '' });
 
-  lоgin$ = new BehaviorSubject<string>('');
+  public userToken$ = new BehaviorSubject<string>('');
 
-  userToken$ = new BehaviorSubject<string>('');
-
-  setUserToken(login: boolean) {
+  public setUserData(login: boolean) {
     if (login) {
-      if (Object.values(this.loginForm$.getValue()).every((v) => v.length > 0)) {
-        this.userToken$.next(
-          this.loginForm$.getValue()['login'] + this.loginForm$.getValue()['password'],
-        );
-        this.userName$.next(this.loginForm$.getValue()['login']);
+      if (Object.values(this.loginForm).every((v) => v.length > 0)) {
+        const newToken = this.loginForm['login'] + this.loginForm['password'];
+        const newUserName = this.loginForm['login'];
+        this.updateUserData(newToken, newUserName);
+        localStorage.setItem(StorageItem.Token, newToken);
+        localStorage.setItem(StorageItem.UserName, newUserName);
       }
     } else {
-      this.userToken$.next('');
-      localStorage.removeItem('token');
-      this.userName$.next(DefaultAuthParam.DefaultUserName);
-      localStorage.removeItem('userName');
+      this.updateUserData(DefaultAuthParam.DefaultToken, DefaultAuthParam.DefaultUserName);
+      localStorage.removeItem(StorageItem.Token);
+      localStorage.removeItem(StorageItem.UserName);
     }
   }
 
-  setValue(ref: BehaviorSubject<{ [x: string]: string }>, value: { [x: string]: string }) {
-    ref.next(value);
+  public get loginForm() {
+    return this.loginForm$.getValue();
   }
 
-  getUserToken() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.userToken$.next(token);
-      this.userName$.next(<string>localStorage.getItem('userName'));
-    }
+  public get userToken() {
     return this.userToken$.getValue();
   }
 
-  saveUserData() {
-    localStorage.setItem('token', this.userToken$.getValue());
-    localStorage.setItem('userName', this.userName$.getValue());
+  public get userName() {
+    return this.userName$.getValue();
+  }
+
+  private updateUserData(newToken: string, newName: string) {
+    this.userToken$.next(newToken);
+    this.userName$.next(newName);
+  }
+
+  public setValue(value: FormModel) {
+    this.loginForm$.next(value);
+  }
+
+  public getUserData() {
+    if (
+      this.userName === DefaultAuthParam.DefaultUserName &&
+      this.userToken === DefaultAuthParam.DefaultToken
+    ) {
+      const storedToken = localStorage.getItem(StorageItem.Token);
+      const storedUserName = localStorage.getItem(StorageItem.UserName);
+      if (storedToken && storedUserName) {
+        this.updateUserData(storedToken, storedUserName);
+        return true;
+      } else return false;
+    }
+    return true;
   }
 }

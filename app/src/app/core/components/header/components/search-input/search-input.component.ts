@@ -26,6 +26,4 @@ export class SearchInputComponent implements OnInit {
       )
       .subscribe((term) => this.searchService.getVideos(term));
   }
-
-  constructor(private readonly searchService: SearchService, private router: Router) {}
 }

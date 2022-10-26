@@ -1,3 +1,4 @@
-export enum DefaultAuthParam {
-  DefaultUserName = 'Your Name',
-}
+export const DefaultAuthParam = {
+  DefaultUserName: 'Your Name',
+  DefaultToken: '',
+};

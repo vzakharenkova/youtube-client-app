@@ -9,23 +9,25 @@ import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  auth = this.authService.loginForm$;
+  constructor(private readonly authService: AuthorizationService, private router: Router) {}
 
-  navRoute = NavRoute;
+  public auth = this.authService.loginForm$;
 
-  inputProps: InputPropsModel[] = [
+  public inputProps: InputPropsModel[] = [
     { title: 'Login', type: 'text', auth: this.auth },
     { title: 'Password', type: 'password', auth: this.auth },
   ];
 
-  onSubmit(e: Event) {
+  public onSubmit(e: Event) {
     e.preventDefault();
-    this.authService.setUserToken(true);
-    if (this.authService.getUserToken().length) {
+    this.authService.setUserData(true);
+    if (this.authService.userToken.length) {
       this.router.navigateByUrl(NavRoute.Main);
       this.authService.saveUserData();
     }
   }
 
-  constructor(private readonly authService: AuthorizationService, private router: Router) {}
+  public onRegistrationBtnClick() {
+    this.router.navigateByUrl(NavRoute.Registration);
+  }
 }
