@@ -9,14 +9,14 @@ import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private readonly authService: AuthorizationService, private router: Router) {}
-
   public auth = this.authService.loginForm$;
 
   public inputProps: InputPropsModel[] = [
     { title: 'Login', type: 'text', auth: this.auth },
     { title: 'Password', type: 'password', auth: this.auth },
   ];
+
+  constructor(private readonly authService: AuthorizationService, private router: Router) {}
 
   public onSubmit(e: Event) {
     e.preventDefault();

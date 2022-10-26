@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs';
 import { VideoItem } from 'src/app/shared/models/video-item.model';
 import { SearchService } from '../../services/search.service';
 
@@ -25,10 +26,13 @@ export class DescriptionCardComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.videoId = params['id'];
     });
-    this.searchService.getVideoById(this.videoId).subscribe((video) => {
-      this.video = <VideoItem>video.items[0];
-      this.isLoaded = true;
-    });
+    this.searchService
+      .getVideoById(this.videoId)
+      .pipe(take(1))
+      .subscribe((video) => {
+        this.video = <VideoItem>video.items[0];
+        this.isLoaded = true;
+      });
   }
 
   public onBackClick() {

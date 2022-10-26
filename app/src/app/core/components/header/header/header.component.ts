@@ -9,13 +9,13 @@ import { NavRoute } from 'src/app/shared/models/shared.model';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  settingsIsOpend = false;
-
-  onToggleSettings() {
-    this.settingsIsOpend = !this.settingsIsOpend;
-  }
+  public settingsIsOpend = false;
 
   constructor(private router: Router, private readonly authService: AuthorizationService) {}
+
+  public onToggleSettings() {
+    this.settingsIsOpend = !this.settingsIsOpend;
+  }
 
   public goToLoginPage() {
     if (this.authService.getUserData()) {

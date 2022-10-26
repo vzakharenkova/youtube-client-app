@@ -10,6 +10,8 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent {
+  constructor(private readonly searchService: SearchService, private filter: FilterPipe) {}
+
   public videoResult: Observable<VideoItem[]> = this.searchService.videos$.pipe(
     map((videos) =>
       this.filter.transform(videos, {
@@ -19,8 +21,6 @@ export class SearchResultsComponent {
       }),
     ),
   );
-
-  constructor(private readonly searchService: SearchService, private filter: FilterPipe) {}
 
   public identify(_index: number, item: VideoItem) {
     return item.id;

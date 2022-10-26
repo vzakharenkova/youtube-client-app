@@ -10,9 +10,11 @@ import { FormModel, InputPropsModel } from '../../models/shared.model';
 export class FormInputComponent {
   @Input() inputProps!: InputPropsModel;
 
-  value = '';
+  public value = '';
 
-  onChange(value: string) {
+  constructor(private readonly authService: AuthorizationService) {}
+
+  public onChange(value: string) {
     this.value = value;
     const formField: FormModel = {
       [this.inputProps.title.toLowerCase()]: this.value,
@@ -21,6 +23,4 @@ export class FormInputComponent {
       Object.assign(this.inputProps.auth?.getValue() as FormModel, formField),
     );
   }
-
-  constructor(private readonly authService: AuthorizationService) {}
 }
