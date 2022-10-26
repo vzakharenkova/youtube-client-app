@@ -1,0 +1,22 @@
+@import '../../shared/shared.scss';
+
+:host {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 100px);
+  .error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &_icon {
+      margin-right: 20px;
+    }
+    &_text {
+      width: 200px;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 2rem;
+      color: $dark-grey;
+    }
+  }
+}

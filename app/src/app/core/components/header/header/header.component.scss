@@ -1,0 +1,41 @@
+@import 'src/app/shared/shared.scss';
+
+:host {
+  .header {
+    background-color: $grey;
+    width: 100%;
+    height: 100px;
+    position: relative;
+    &_content {
+      width: 80vw;
+      height: 100%;
+      display: flex;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
+      .header_link {
+        height: 63%;
+        cursor: pointer;
+        .header_logo {
+          height: 100%;
+        }
+      }
+      app-search-input {
+        width: 40%;
+        height: 30%;
+        margin: 0 20px;
+      }
+      app-button {
+        height: 30%;
+        cursor: pointer;
+      }
+    }
+    app-login-info {
+      position: absolute;
+      top: 35%;
+      right: 5%;
+      height: 30%;
+      cursor: pointer;
+    }
+  }
+}

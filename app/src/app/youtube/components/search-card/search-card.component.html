@@ -1,0 +1,12 @@
+<mat-card appDateStatus [video]="video">
+  <img class="video-img" [src]="video.snippet.thumbnails.medium.url" [alt]="video.snippet.title" />
+  <mat-card-content>
+    <app-card-statistic [video]="video"></app-card-statistic>
+  </mat-card-content>
+  <mat-card-title>{{ video.snippet.title }}</mat-card-title>
+  <mat-card-actions>
+    <button mat-raised-button color="blue" class="btn-more" (click)="goToVideoDescriptionPage()">
+      More
+    </button>
+  </mat-card-actions>
+</mat-card>

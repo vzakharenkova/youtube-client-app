@@ -1,0 +1,10 @@
+<div class="input_field">
+  <label class="label" for="{{ inputProps.title.toLowerCase() }}">{{ inputProps.title }}</label>
+  <input
+    class="input"
+    [type]="inputProps.type"
+    [id]="inputProps.title.toLowerCase()"
+    [ngModel]="value"
+    (ngModelChange)="onChange($event)"
+  />
+</div>

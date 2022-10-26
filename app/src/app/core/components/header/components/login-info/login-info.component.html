@@ -1,0 +1,13 @@
+<div class="header_login-info">
+  <span class="user-name">{{ userName | async }}</span>
+  <app-button
+    type="login"
+    icon="account_circle"
+    *ngIf="currentUserName === this.defaultUserName"
+  ></app-button>
+  <app-button
+    type="login"
+    icon="exit_to_app"
+    *ngIf="currentUserName !== this.defaultUserName"
+  ></app-button>
+</div>

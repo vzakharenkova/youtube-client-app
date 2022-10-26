@@ -1,0 +1,51 @@
+@import 'src/app/shared/shared.scss';
+
+mat-card {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $grey;
+  &.group-1 {
+    border-bottom: 5px solid $blue;
+  }
+  &.group-2 {
+    border-bottom: 5px solid $green;
+  }
+  &.group-3 {
+    border-bottom: 5px solid $yellow;
+  }
+  &.group-4 {
+    border-bottom: 5px solid $red;
+  }
+  .video-img {
+    width: 100%;
+  }
+  mat-card-content {
+    app-card-statistic {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+  }
+  mat-card-title {
+    font-size: 20px;
+    text-align: right;
+  }
+  mat-card-actions:last-child {
+    margin-bottom: 0;
+    .btn-more {
+      display: block;
+      margin: 0 auto;
+      &:hover {
+        background-color: $blue_hover;
+      }
+    }
+  }
+}
+
+.mat-blue {
+  background-color: $blue;
+  color: $white;
+  width: 40%;
+}
