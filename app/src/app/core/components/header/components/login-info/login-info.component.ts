@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { DefaultAuthParam } from 'src/app/authorization/models/authorization.model';
+import { BehaviorSubject } from 'rxjs';
+import { DEFAULT_AUTH_PARAMS } from 'src/app/authorization/models/authorization.model';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
 
 @Component({
@@ -8,25 +9,25 @@ import { AuthorizationService } from 'src/app/authorization/services/authorizati
   templateUrl: './login-info.component.html',
   styleUrls: ['./login-info.component.scss'],
 })
-export class LoginInfoComponent implements OnInit {
-  defaultUserName = DefaultAuthParam.DefaultUserName;
+export class LoginInfoComponent {
+  public defaultUserName = DEFAULT_AUTH_PARAMS.DEFAULT_USER_NAME;
 
-  userName: string | DefaultAuthParam = DefaultAuthParam.DefaultUserName;
+  public userName: BehaviorSubject<string> = this.authService.userName$;
 
   constructor(private router: Router, private readonly authService: AuthorizationService) {}
 
-  ngOnInit(): void {
-    this.authService.userName$.subscribe((name) => (this.userName = name));
+  public get currentUserName() {
+    return this.userName.getValue();
   }
 
   public logout() {
-    if (this.authService.getUserToken().length) {
-      this.authService.setUserToken(false);
+    if (this.authService.userToken.length) {
+      this.authService.setUserData(false);
     }
   }
 
   public goToAdminPage() {
-    if (this.authService.getUserToken().length) {
+    if (this.authService.userToken.length) {
       this.router.navigateByUrl('/admin');
     }
   }

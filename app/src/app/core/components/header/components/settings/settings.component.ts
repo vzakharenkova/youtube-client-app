@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SortingType, SortingOrder } from 'src/app/shared/models/shared.model';
-import { VideoItem } from 'src/app/shared/models/video-item.model';
 import { SearchService } from 'src/app/youtube/services/search.service';
 
 @Component({
@@ -8,9 +7,7 @@ import { SearchService } from 'src/app/youtube/services/search.service';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
 })
-export class SettingsComponent implements OnInit {
-  currentVideoList: VideoItem[] = [];
-
+export class SettingsComponent {
   sortTerm = '';
 
   sortingTypeEnum = SortingType;
@@ -18,6 +15,8 @@ export class SettingsComponent implements OnInit {
   sortingOrder: SortingOrder | null = null;
 
   sortingType: SortingType | null = null;
+
+  constructor(private readonly searchService: SearchService) {}
 
   onSortClick(by: SortingType) {
     if (this.sortingType === null || this.sortingType !== by) {
@@ -30,18 +29,12 @@ export class SettingsComponent implements OnInit {
     this.sortingType = by;
 
     this.searchService.changeSortingCriteria(this.sortingType, this.sortingOrder);
-    this.searchService.changeVideos(this.currentVideoList);
+    this.searchService.changeVideos(this.searchService.videos);
   }
 
   onChange(str: string) {
     this.sortTerm = str;
     this.searchService.changeSortTerm(this.sortTerm);
-    this.searchService.changeVideos(this.currentVideoList);
-  }
-
-  constructor(private readonly searchService: SearchService) {}
-
-  ngOnInit(): void {
-    this.searchService.videos$.subscribe((videos) => (this.currentVideoList = videos));
+    this.searchService.changeVideos(this.searchService.videos);
   }
 }

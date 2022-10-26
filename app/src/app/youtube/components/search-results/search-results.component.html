@@ -1,6 +1,6 @@
 <div class="search-result">
   <app-search-card
-    *ngFor="let video of videoResult; trackBy: identify"
+    *ngFor="let video of videoResult | async; trackBy: identify"
     [video]="video"
   ></app-search-card>
 </div>

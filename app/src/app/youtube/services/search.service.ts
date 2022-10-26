@@ -80,4 +80,8 @@ export class SearchService {
     this.sortingOrder$.next(sortingOrder);
     this.sortedBy$.next(sortedBy);
   }
+
+  public get videos() {
+    return this.videos$.getValue();
+  }
 }

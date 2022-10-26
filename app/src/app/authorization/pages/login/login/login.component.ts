@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
-import { NavRoute } from 'src/app/shared/models/shared.model';
+import { FormModel, NavRoute } from 'src/app/shared/models/shared.model';
 
 @Component({
   selector: 'app-login',
@@ -44,25 +43,27 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  onChange(event: Event) {
+  public onChange(event: Event) {
     if (!event) return;
     const inputName = (<HTMLInputElement>event.target).id;
     const inputValue = (<HTMLInputElement>event.target).value;
-    const n: { [x: string]: string } = {
+    const loginFormField: FormModel = {
       [inputName]: inputValue,
     };
     this.authService.setValue(
-      <BehaviorSubject<{ [x: string]: string }>>this.authService.loginForm$,
-      Object.assign(this.authService.loginForm$.getValue() as { [x: string]: string }, n),
+      Object.assign(this.authService.loginForm as FormModel, loginFormField),
     );
   }
 
-  onSubmit(e: Event) {
+  public onRegistrationBtnClick() {
+    this.router.navigateByUrl(NavRoute.Registration);
+  }
+
+  public onSubmit(e: Event) {
     e.preventDefault();
-    this.authService.setUserToken(true);
-    if (this.authService.getUserToken().length) {
+    this.authService.setUserData(true);
+    if (this.authService.userToken.length) {
       this.router.navigateByUrl(NavRoute.Main);
-      this.authService.saveUserData();
     }
   }
 
