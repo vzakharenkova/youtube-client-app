@@ -1,14 +1,17 @@
-<div class="card" *ngIf="isLoaded">
-  <app-button type="back" icon="keyboard_arrow_left" (click)="onBackClick()"></app-button>
-  <img class="card_img" [src]="video.snippet.thumbnails.high.url" />
-  <div class="card_content" appDateStatus [video]="video">
-    <div class="card_description">
-      <div class="card_header">
-        <div class="video_date">{{ video.snippet.publishedAt | date: 'fullDate' }}</div>
-        <h2 class="video_title">{{ video.snippet.title }}</h2>
+<ng-container>
+  <div class="card" *ngIf="(isLoaded$ | async) === true">
+    <app-button type="back" icon="keyboard_arrow_left" (click)="onBackClick()"></app-button>
+    <img class="card_img" [src]="video.snippet.thumbnails.high.url" />
+    <div class="card_content" appDateStatus [video]="video">
+      <div class="card_description">
+        <div class="card_header">
+          <div class="video_date">{{ video.snippet.publishedAt | date: 'fullDate' }}</div>
+          <h2 class="video_title">{{ video.snippet.title }}</h2>
+        </div>
+        <div class="video_description">{{ video.snippet.description }}</div>
       </div>
-      <div class="video_description">{{ video.snippet.description }}</div>
+      <app-card-statistic [video]="video"></app-card-statistic>
     </div>
-    <app-card-statistic [video]="video"></app-card-statistic>
   </div>
-</div>
+  <mat-spinner *ngIf="(isLoaded$ | async) === false"></mat-spinner>
+</ng-container>

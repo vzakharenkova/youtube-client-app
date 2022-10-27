@@ -17,7 +17,6 @@ import { SettingsComponent } from './core/components/header/components/settings/
 import { HeaderComponent } from './core/components/header/header/header.component';
 import { ErrorModule } from './error/error/error.module';
 
-import { FilterPipe } from './youtube/pipes/filter.pipe';
 import { YoutubeModule } from './youtube/youtube.module';
 import { ButtonModule } from './shared/components/button/button.module';
 import { SearchInterceptorService } from './youtube/services/search-Interceptor-service';
@@ -36,7 +35,6 @@ import { reducer } from './redux/reducers/app.reducer';
     SettingsComponent,
     LoginInfoComponent,
     SearchInputComponent,
-    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +49,7 @@ import { reducer } from './redux/reducers/app.reducer';
     MatButtonModule,
     ButtonModule,
     FormsModule,
+
     StoreModule.forRoot({ videoList: reducer }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
