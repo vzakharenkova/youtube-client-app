@@ -8,17 +8,17 @@
         type="email"
         id="login"
         formControlName="login"
-        [ngModel]="userLogin"
+        [ngModel]="userLogin | async"
         (input)="onChange($event)"
         [ngStyle]="
           _login?.invalid && (_login?.touched || _login?.dirty) ? { border: 'red 1px solid' } : {}
         "
       />
       <div *ngIf="_login?.invalid && (_login?.touched || _login?.dirty)">
-        <span *ngIf="!!userLogin.length && _login?.errors?.['pattern']" class="error_msg"
+        <span *ngIf="!_login?.errors?.['required'] && _login?.errors?.['pattern']" class="error_msg"
           >The login email is invalid</span
         >
-        <span *ngIf="_login?.errors?.['required'] && !userLogin.length" class="error_msg"
+        <span *ngIf="_login?.errors?.['required']" class="error_msg"
           >Please enter a login email</span
         >
       </div>
@@ -30,7 +30,7 @@
         type="password"
         id="password"
         formControlName="password"
-        [ngModel]="userPassword"
+        [ngModel]="userPassword | async"
         (input)="onChange($event)"
         [ngStyle]="
           _password?.invalid && (_password?.touched || _password?.dirty)
@@ -50,7 +50,7 @@
             <li>- inclusion of at least one special character, e.g., ! @ # ? ]</li>
           </ul></span
         >
-        <span *ngIf="_password?.errors?.['required'] && !userPassword.length" class="error_msg"
+        <span *ngIf="_password?.errors?.['required']" class="error_msg"
           >Please enter a password</span
         >
       </div>

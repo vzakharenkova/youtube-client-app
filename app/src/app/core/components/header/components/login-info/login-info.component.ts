@@ -17,12 +17,13 @@ export class LoginInfoComponent {
   constructor(private router: Router, private readonly authService: AuthorizationService) {}
 
   public get currentUserName() {
-    return this.userName.getValue();
+    return this.authService.userName;
   }
 
   public logout() {
     if (this.authService.userToken.length) {
       this.authService.setUserData(false);
+      this.authService.setValue({ login: '', password: '' });
     }
   }
 

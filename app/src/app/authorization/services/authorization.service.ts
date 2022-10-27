@@ -13,6 +13,18 @@ export class AuthorizationService {
 
   public userToken$ = new BehaviorSubject<string>('');
 
+  public get loginForm() {
+    return this.loginForm$.getValue();
+  }
+
+  public get userToken() {
+    return this.userToken$.getValue();
+  }
+
+  public get userName() {
+    return this.userName$.getValue();
+  }
+
   public setUserData(login: boolean) {
     if (login) {
       if (Object.values(this.loginForm).every((v) => v.length > 0)) {
@@ -27,18 +39,6 @@ export class AuthorizationService {
       localStorage.removeItem(StorageItem.Token);
       localStorage.removeItem(StorageItem.UserName);
     }
-  }
-
-  public get loginForm() {
-    return this.loginForm$.getValue();
-  }
-
-  public get userToken() {
-    return this.userToken$.getValue();
-  }
-
-  public get userName() {
-    return this.userName$.getValue();
   }
 
   private updateUserData(newToken: string, newName: string) {

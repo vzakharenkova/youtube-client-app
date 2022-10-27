@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { map, Observable } from 'rxjs';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
 import { FormModel, NavRoute } from 'src/app/shared/models/shared.model';
 
@@ -10,13 +11,21 @@ import { FormModel, NavRoute } from 'src/app/shared/models/shared.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+  public loginForm!: FormGroup;
 
-  navRoute = NavRoute;
+  userLogin: Observable<string> = this.authService.loginForm$.pipe(map((f) => f['login']));
 
-  userLogin!: string;
+  userPassword: Observable<string> = this.authService.loginForm$.pipe(map((f) => f['password']));
 
-  userPassword!: string;
+  constructor(
+    private readonly authService: AuthorizationService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+  ) {}
+
+  ngOnInit() {
+    this.initForm();
+  }
 
   private initForm() {
     this.loginForm = this.formBuilder.group({
@@ -65,19 +74,5 @@ export class LoginComponent implements OnInit {
     if (this.authService.userToken.length) {
       this.router.navigateByUrl(NavRoute.Main);
     }
-  }
-
-  constructor(
-    private readonly authService: AuthorizationService,
-    private router: Router,
-    private formBuilder: FormBuilder,
-  ) {}
-
-  ngOnInit() {
-    this.initForm();
-    this.authService.loginForm$.subscribe((form) => {
-      this.userLogin = form['login'];
-      this.userPassword = form['password'];
-    });
   }
 }

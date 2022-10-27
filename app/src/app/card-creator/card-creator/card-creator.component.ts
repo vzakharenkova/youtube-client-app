@@ -11,6 +11,32 @@ export class CardCreatorComponent implements OnInit {
 
   isCreated = false;
 
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit() {
+    this.initForm();
+  }
+
+  get _videoTitle() {
+    return this.cardCreationForm.get('videoTitle');
+  }
+
+  get _videoDescription() {
+    return this.cardCreationForm.get('videoDescription');
+  }
+
+  get _videoImg() {
+    return this.cardCreationForm.get('videoImg');
+  }
+
+  get _videoLink() {
+    return this.cardCreationForm.get('videoLink');
+  }
+
+  get _creationDate() {
+    return this.cardCreationForm.get('creationDate');
+  }
+
   private initForm() {
     this.cardCreationForm = this.formBuilder.group({
       videoTitle: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -41,39 +67,13 @@ export class CardCreatorComponent implements OnInit {
     };
   }
 
-  get _videoTitle() {
-    return this.cardCreationForm.get('videoTitle');
-  }
-
-  get _videoDescription() {
-    return this.cardCreationForm.get('videoDescription');
-  }
-
-  get _videoImg() {
-    return this.cardCreationForm.get('videoImg');
-  }
-
-  get _videoLink() {
-    return this.cardCreationForm.get('videoLink');
-  }
-
-  get _creationDate() {
-    return this.cardCreationForm.get('creationDate');
-  }
-
-  addErrorStyle(target: AbstractControl<any, any> | null) {
+  public addErrorStyle(target: AbstractControl<any, any> | null) {
     return target?.invalid && (target?.touched || target?.dirty) ? { border: 'red 1px solid' } : {};
   }
 
-  onSubmit(e: Event) {
+  public onSubmit(e: Event) {
     e.preventDefault();
     this.isCreated = true;
     setTimeout(() => (this.isCreated = false), 2000);
-  }
-
-  constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit() {
-    this.initForm();
   }
 }
