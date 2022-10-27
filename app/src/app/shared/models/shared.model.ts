@@ -1,5 +1,9 @@
 import { BehaviorSubject } from 'rxjs';
 
+export interface FormModel {
+  [formFieldTitle: string]: string;
+}
+
 export interface InputPropsModel {
   title: string;
   type: string;
@@ -27,6 +31,11 @@ export enum SortingType {
 export enum SortingOrder {
   Down = 'down',
   Up = 'up',
+}
+
+export enum StorageItem {
+  Token = 'token',
+  UserName = 'userName',
 }
 
 interface Thumbnail {

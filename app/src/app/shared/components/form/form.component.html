@@ -1,3 +1,6 @@
 <form class="form">
-  <app-form-input *ngFor="let prop of inputProps" [inputProps]="prop"></app-form-input>
+  <app-form-input
+    *ngFor="let prop of inputProps; trackBy: identify"
+    [inputProps]="prop"
+  ></app-form-input>
 </form>

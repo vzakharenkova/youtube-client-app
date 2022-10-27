@@ -17,15 +17,25 @@ import { SearchService } from 'src/app/youtube/services/search.service';
 export class SettingsComponent implements OnInit {
   currentVideoList: Observable<VideoItem[]> = this.store.select(selectSearchResult);
 
-  sortTerm = '';
+  public sortingTypeEnum = SortingType;
 
-  sortingTypeEnum = SortingType;
+  private sortingOrder: SortingOrder | null = null;
 
-  sortingOrder: SortingOrder | null = null;
+  private sortingType: SortingType | null = null;
 
-  sortingType: SortingType | null = null;
+  public sortTerm!: string;
 
-  onSortClick(by: SortingType) {
+  constructor(
+    private readonly searchService: SearchService,
+    private store: Store<VideoListStateModel>,
+    private filter: FilterPipe,
+  ) {}
+
+  ngOnInit(): void {
+    // this.searchService.videos$.subscribe((videos) => (this.currentVideoList = videos));
+  }
+
+  public onSortClick(by: SortingType) {
     if (this.sortingType === null || this.sortingType !== by) {
       this.sortingOrder = SortingOrder.Up;
     } else if (this.sortingOrder === SortingOrder.Up) {
@@ -50,19 +60,9 @@ export class SettingsComponent implements OnInit {
     );
   }
 
-  onChange(str: string) {
+  public onChange(str: string) {
     this.sortTerm = str;
     this.searchService.changeSortTerm(this.sortTerm);
     // this.store.dispatch(updateSearchResult({ searchResult: this.currentVideoList.pipe(map(d => )) }));
-  }
-
-  constructor(
-    private readonly searchService: SearchService,
-    private store: Store<VideoListStateModel>,
-    private filter: FilterPipe,
-  ) {}
-
-  ngOnInit(): void {
-    // this.searchService.videos$.subscribe((videos) => (this.currentVideoList = videos));
   }
 }

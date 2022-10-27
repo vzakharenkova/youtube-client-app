@@ -9,18 +9,17 @@ import { NavRoute } from 'src/app/shared/models/shared.model';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  settinsIsOpend = false;
-
-  onToggleSettings() {
-    this.settinsIsOpend = !this.settinsIsOpend;
-  }
+  public settingsIsOpend = false;
 
   constructor(private router: Router, private readonly authService: AuthorizationService) {}
 
+  public onToggleSettings() {
+    this.settingsIsOpend = !this.settingsIsOpend;
+  }
+
   public goToLoginPage() {
-    if (!this.authService.getUserToken().length) {
+    if (!this.authService.userToken.length) {
       this.router.navigateByUrl(NavRoute.Login);
-      // this.authService.setUserToken(false);
     }
   }
 }

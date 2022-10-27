@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
-import { InputPropsModel } from '../../models/shared.model';
+import { FormModel, InputPropsModel } from '../../models/shared.model';
 
 @Component({
   selector: 'app-form-input',
@@ -11,18 +10,17 @@ import { InputPropsModel } from '../../models/shared.model';
 export class FormInputComponent {
   @Input() inputProps!: InputPropsModel;
 
-  value = '';
+  public value = '';
 
-  onChange(value: string) {
+  constructor(private readonly authService: AuthorizationService) {}
+
+  public onChange(value: string) {
     this.value = value;
-    const n: { [x: string]: string } = {
+    const formField: FormModel = {
       [this.inputProps.title.toLowerCase()]: this.value,
     };
     this.authService.setValue(
-      <BehaviorSubject<{ [x: string]: string }>>this.inputProps.auth,
-      Object.assign(this.inputProps.auth?.getValue() as { [x: string]: string }, n),
+      Object.assign(this.inputProps.auth?.getValue() as FormModel, formField),
     );
   }
-
-  constructor(private readonly authService: AuthorizationService) {}
 }

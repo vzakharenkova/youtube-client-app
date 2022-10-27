@@ -1,14 +1,14 @@
 <div class="header_login-info">
-  <span class="user-name" (click)="this.goToAdminPage()">{{ userName }} </span>
+  <span class="user-name" (click)="this.goToAdminPage()">{{ userName | async }} </span>
   <app-button
     type="login"
     icon="account_circle"
-    *ngIf="userName === this.defaultUserName"
+    *ngIf="currentUserName === this.defaultUserName"
   ></app-button>
   <app-button
     type="login"
     icon="exit_to_app"
-    *ngIf="userName !== this.defaultUserName"
+    *ngIf="currentUserName !== this.defaultUserName"
     (click)="this.logout()"
   ></app-button>
 </div>

@@ -31,7 +31,7 @@ export class SearchResultsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  identify(_index: number, item: VideoItem) {
+  public identify(_index: number, item: VideoItem) {
     return item.id;
   }
 }

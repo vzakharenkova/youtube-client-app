@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
 
 @Component({
@@ -7,12 +8,16 @@ import { InputPropsModel, NavRoute } from 'src/app/shared/models/shared.model';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent {
-  navRoute = NavRoute;
-
-  inputProps: InputPropsModel[] = [
+  public inputProps: InputPropsModel[] = [
     { title: 'First Name', type: 'text' },
     { title: 'Last Name', type: 'text' },
     { title: 'Email', type: 'email' },
     { title: 'Password', type: 'password' },
   ];
+
+  constructor(private readonly router: Router) {}
+
+  public onLoginBtnClick() {
+    this.router.navigateByUrl(NavRoute.Login);
+  }
 }

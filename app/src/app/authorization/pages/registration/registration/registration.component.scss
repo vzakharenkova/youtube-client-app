@@ -1,4 +1,4 @@
-@import '../../../../shared/shared.scss';
+@import 'src/app/shared/shared.scss';
 
 :host {
   .registration {
@@ -22,10 +22,15 @@
       align-items: center;
       justify-content: flex-end;
 
-      .link {
+      .link_btn {
         margin-right: 20px;
+        line-height: 14px;
+        font-size: 14px;
         color: $blue;
         text-decoration: underline;
+        background: none;
+        border: none;
+        cursor: pointer;
       }
 
       .submit_btn {

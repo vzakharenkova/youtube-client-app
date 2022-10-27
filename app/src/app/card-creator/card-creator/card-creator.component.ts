@@ -21,6 +21,26 @@ export class CardCreatorComponent implements OnInit {
     this.initForm();
   }
 
+  get _videoTitle() {
+    return this.cardCreationForm.get('videoTitle');
+  }
+
+  get _videoDescription() {
+    return this.cardCreationForm.get('videoDescription');
+  }
+
+  get _videoImg() {
+    return this.cardCreationForm.get('videoImg');
+  }
+
+  get _videoLink() {
+    return this.cardCreationForm.get('videoLink');
+  }
+
+  get _creationDate() {
+    return this.cardCreationForm.get('creationDate');
+  }
+
   private initForm() {
     this.cardCreationForm = this.formBuilder.group({
       videoTitle: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -49,26 +69,6 @@ export class CardCreatorComponent implements OnInit {
       let valid = currentDate < new Date(control.value).getTime();
       return valid ? null : { invalidDate: true };
     };
-  }
-
-  get _videoTitle() {
-    return this.cardCreationForm.get('videoTitle');
-  }
-
-  get _videoDescription() {
-    return this.cardCreationForm.get('videoDescription');
-  }
-
-  get _videoImg() {
-    return this.cardCreationForm.get('videoImg');
-  }
-
-  get _videoLink() {
-    return this.cardCreationForm.get('videoLink');
-  }
-
-  get _creationDate() {
-    return this.cardCreationForm.get('creationDate');
   }
 
   public addErrorStyle(target: AbstractControl<any, any> | null) {

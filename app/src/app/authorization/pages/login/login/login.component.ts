@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AuthorizationService } from 'src/app/authorization/services/authorization.service';
-import { NavRoute } from 'src/app/shared/models/shared.model';
+import { FormModel, NavRoute } from 'src/app/shared/models/shared.model';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +11,21 @@ import { NavRoute } from 'src/app/shared/models/shared.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+  public loginForm!: FormGroup;
 
-  navRoute = NavRoute;
+  userLogin: Observable<string> = this.authService.loginForm$.pipe(map((f) => f['login']));
 
-  userLogin!: string;
+  userPassword: Observable<string> = this.authService.loginForm$.pipe(map((f) => f['password']));
 
-  userPassword!: string;
+  constructor(
+    private readonly authService: AuthorizationService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+  ) {}
+
+  ngOnInit() {
+    this.initForm();
+  }
 
   private initForm() {
     this.loginForm = this.formBuilder.group({
@@ -44,39 +52,27 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  onChange(event: Event) {
+  public onChange(event: Event) {
     if (!event) return;
     const inputName = (<HTMLInputElement>event.target).id;
     const inputValue = (<HTMLInputElement>event.target).value;
-    const n: { [x: string]: string } = {
+    const loginFormField: FormModel = {
       [inputName]: inputValue,
     };
     this.authService.setValue(
-      <BehaviorSubject<{ [x: string]: string }>>this.authService.loginForm$,
-      Object.assign(this.authService.loginForm$.getValue() as { [x: string]: string }, n),
+      Object.assign(this.authService.loginForm as FormModel, loginFormField),
     );
   }
 
-  onSubmit(e: Event) {
-    e.preventDefault();
-    this.authService.setUserToken(true);
-    if (this.authService.getUserToken().length) {
-      this.router.navigateByUrl(NavRoute.Main);
-      this.authService.saveUserData();
-    }
+  public onRegistrationBtnClick() {
+    this.router.navigateByUrl(NavRoute.Registration);
   }
 
-  constructor(
-    private readonly authService: AuthorizationService,
-    private router: Router,
-    private formBuilder: FormBuilder,
-  ) {}
-
-  ngOnInit() {
-    this.initForm();
-    this.authService.loginForm$.subscribe((form) => {
-      this.userLogin = form['login'];
-      this.userPassword = form['password'];
-    });
+  public onSubmit(e: Event) {
+    e.preventDefault();
+    this.authService.setUserData(true);
+    if (this.authService.userToken.length) {
+      this.router.navigateByUrl(NavRoute.Main);
+    }
   }
 }
