@@ -16,6 +16,43 @@
       margin-bottom: 25px;
     }
 
+    .form {
+      margin-bottom: 10px;
+
+      .input_field {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+
+        .label {
+          color: $dark-grey;
+          font-size: 90%;
+        }
+
+        .input {
+          box-sizing: border-box;
+          background-color: $grey;
+          outline: none;
+          border: none;
+          height: 40px;
+          padding: 10px;
+          border-radius: 5px;
+        }
+        .error_msg {
+          color: $red;
+          margin-top: 3px;
+          font-size: 10px;
+
+          .recs_list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+
     .btn_field {
       margin-top: 25px;
       display: flex;
@@ -42,12 +79,17 @@
         padding: 10px 35px;
         cursor: pointer;
         transition: $btn_transition;
-        &:hover {
+        &:enabled:hover {
           background-color: $blue_hover;
         }
-        &:active {
+        &:enabled:active {
           background-color: $blue_hover;
           font-size: 12px;
+        }
+        &:disabled {
+          color: $light-grey;
+          background-color: $blue_hover;
+          cursor: default;
         }
       }
     }
