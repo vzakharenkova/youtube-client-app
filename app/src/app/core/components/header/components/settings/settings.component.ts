@@ -8,13 +8,13 @@ import { SearchService } from 'src/app/youtube/services/search.service';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent {
-  public sortTerm = '';
-
   public sortingTypeEnum = SortingType;
 
   private sortingOrder: SortingOrder | null = null;
 
   private sortingType: SortingType | null = null;
+
+  public sortTerm!: string;
 
   constructor(private readonly searchService: SearchService) {}
 
@@ -29,12 +29,10 @@ export class SettingsComponent {
     this.sortingType = by;
 
     this.searchService.changeSortingCriteria(this.sortingType, this.sortingOrder);
-    this.searchService.changeVideos(this.searchService.videos);
   }
 
   public onChange(str: string) {
     this.sortTerm = str;
     this.searchService.changeSortTerm(this.sortTerm);
-    this.searchService.changeVideos(this.searchService.videos);
   }
 }

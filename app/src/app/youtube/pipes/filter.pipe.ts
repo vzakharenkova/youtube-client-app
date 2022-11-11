@@ -30,9 +30,9 @@ export class FilterPipe implements PipeTransform {
     }
 
     if (criteria.sortingType === SortingType.Date) {
-      result.sort(sortByDate.bind(this));
+      return [...result].sort(sortByDate.bind(this));
     } else if (criteria.sortingType === SortingType.Views) {
-      result.sort(sortByViews.bind(this));
+      return [...result].sort(sortByViews.bind(this));
     }
     return result;
   }

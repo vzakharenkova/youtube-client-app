@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs';
+import { BehaviorSubject, take, tap } from 'rxjs';
 import { VideoItem } from 'src/app/shared/models/video-item.model';
 import { SearchService } from '../../services/search.service';
 
@@ -14,7 +14,7 @@ export class DescriptionCardComponent implements OnInit {
 
   public video!: VideoItem;
 
-  public isLoaded = false;
+  public isLoaded$ = new BehaviorSubject<boolean>(false);
 
   constructor(
     public route: ActivatedRoute,
@@ -28,10 +28,12 @@ export class DescriptionCardComponent implements OnInit {
     });
     this.searchService
       .getVideoById(this.videoId)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        tap(() => this.isLoaded$.next(true)),
+      )
       .subscribe((video) => {
         this.video = <VideoItem>video.items[0];
-        this.isLoaded = true;
       });
   }
 
