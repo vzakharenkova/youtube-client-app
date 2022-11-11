@@ -1,19 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchItem } from 'src/app/shared/models/search-item.model';
 import { SortingCriteria, SortingOrder, SortingType } from 'src/app/shared/models/shared.model';
+import { VideoItem } from 'src/app/shared/models/video-item.model';
 
 @Pipe({
   name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
-  transform(value: SearchItem[], criteria: SortingCriteria): SearchItem[] {
+  transform(value: VideoItem[], criteria: SortingCriteria): VideoItem[] {
     const result = criteria.term
       ? value.filter((item) =>
           item.snippet.title.toLowerCase().includes((<string>criteria.term).toLowerCase()),
         )
       : value;
 
-    function sortByDate(v1: SearchItem, v2: SearchItem) {
+    function sortByDate(v1: VideoItem, v2: VideoItem) {
       if (criteria.sortingOrder === SortingOrder.Up) {
         return Date.parse(v1.snippet.publishedAt) - Date.parse(v2.snippet.publishedAt);
       } else {
@@ -21,7 +21,7 @@ export class FilterPipe implements PipeTransform {
       }
     }
 
-    function sortByViews(v1: SearchItem, v2: SearchItem) {
+    function sortByViews(v1: VideoItem, v2: VideoItem) {
       if (criteria.sortingOrder === SortingOrder.Up) {
         return +v1.statistics.viewCount - +v2.statistics.viewCount;
       } else {

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { SearchItem } from 'src/app/shared/models/search-item.model';
+import { VideoItem } from 'src/app/shared/models/video-item.model';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { SearchService } from '../../services/search.service';
 
@@ -9,24 +9,20 @@ import { SearchService } from '../../services/search.service';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent {
   constructor(private readonly searchService: SearchService, private filter: FilterPipe) {}
 
-  public videoResult!: Observable<SearchItem[]>;
+  public videoResult: Observable<VideoItem[]> = this.searchService.videos$.pipe(
+    map((videos) =>
+      this.filter.transform(videos, {
+        term: this.searchService.sortTerm$.getValue(),
+        sortingType: this.searchService.sortedBy$.getValue(),
+        sortingOrder: this.searchService.sortingOrder$.getValue(),
+      }),
+    ),
+  );
 
-  ngOnInit(): void {
-    this.videoResult = this.searchService.videos$.pipe(
-      map((videos) =>
-        this.filter.transform(videos, {
-          term: this.searchService.sortTerm$.getValue(),
-          sortingType: this.searchService.sortedBy$.getValue(),
-          sortingOrder: this.searchService.sortingOrder$.getValue(),
-        }),
-      ),
-    );
-  }
-
-  public identify(_index: number, item: SearchItem) {
+  public identify(_index: number, item: VideoItem) {
     return item.id;
   }
 }

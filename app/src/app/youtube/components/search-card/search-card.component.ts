@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchItem } from 'src/app/shared/models/search-item.model';
 import { NavRoute } from 'src/app/shared/models/shared.model';
+import { VideoItem } from 'src/app/shared/models/video-item.model';
 
 @Component({
   selector: 'app-search-card',
@@ -10,7 +10,7 @@ import { NavRoute } from 'src/app/shared/models/shared.model';
 })
 export class SearchCardComponent {
   @Input()
-  video!: SearchItem;
+  video!: VideoItem;
 
   constructor(private router: Router) {}
 

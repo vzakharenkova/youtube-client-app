@@ -8,8 +8,6 @@ import { SearchService } from 'src/app/youtube/services/search.service';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent {
-  constructor(private readonly searchService: SearchService) {}
-
   sortTerm = '';
 
   sortingTypeEnum = SortingType;
@@ -17,6 +15,8 @@ export class SettingsComponent {
   sortingOrder: SortingOrder | null = null;
 
   sortingType: SortingType | null = null;
+
+  constructor(private readonly searchService: SearchService) {}
 
   onSortClick(by: SortingType) {
     if (this.sortingType === null || this.sortingType !== by) {

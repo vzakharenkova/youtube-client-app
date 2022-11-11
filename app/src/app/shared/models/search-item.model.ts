@@ -1,9 +1,15 @@
+import { Thumbnails } from './shared.model';
+
 export interface SearchItem {
   kind: string;
   etag: string;
-  id: string;
+  id: {
+    kind: string;
+    videoId: string;
+    channelId: string;
+    playlistId: string;
+  };
   snippet: Snippet;
-  statistics: VideoStatistic;
 }
 
 interface Snippet {
@@ -11,36 +17,7 @@ interface Snippet {
   channelId: string;
   title: string;
   description: string;
-  thumbnails: Thumbnails;
   channelTitle: string;
-  tags: string[];
-  categoryId: string;
   liveBroadcastContent: string;
-  defaultLanguage?: string;
-  localized: {
-    title: string;
-    description: string;
-  };
-  defaultAudioLanguage: string;
-}
-
-interface VideoStatistic {
-  viewCount: string;
-  likeCount: string;
-  dislikeCount: string;
-  favoriteCount: string;
-  commentCount: string;
-}
-
-interface Thumbnail {
-  url: string;
-  width: number;
-  height: number;
-}
-interface Thumbnails {
-  default: Thumbnail;
-  medium: Thumbnail;
-  high: Thumbnail;
-  standard: Thumbnail;
-  maxres: Thumbnail;
+  thumbnails: Thumbnails;
 }

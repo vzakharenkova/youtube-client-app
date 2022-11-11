@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { FormModel, StorageItem } from 'src/app/shared/models/shared.model';
-import { DefaultAuthParam } from '../models/authorization.model';
+import { DEFAULT_AUTH_PARAMS } from '../models/authorization.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizationService {
-  public userName$ = new BehaviorSubject<string>(DefaultAuthParam.DefaultUserName);
+  public userName$ = new BehaviorSubject<string>(DEFAULT_AUTH_PARAMS.DEFAULT_USER_NAME);
 
   public loginForm$ = new BehaviorSubject<FormModel>({ login: '', password: '' });
 
@@ -23,7 +23,7 @@ export class AuthorizationService {
         localStorage.setItem(StorageItem.UserName, newUserName);
       }
     } else {
-      this.updateUserData(DefaultAuthParam.DefaultToken, DefaultAuthParam.DefaultUserName);
+      this.updateUserData(DEFAULT_AUTH_PARAMS.DEFAULT_TOKEN, DEFAULT_AUTH_PARAMS.DEFAULT_USER_NAME);
       localStorage.removeItem(StorageItem.Token);
       localStorage.removeItem(StorageItem.UserName);
     }
@@ -52,8 +52,8 @@ export class AuthorizationService {
 
   public getUserData() {
     if (
-      this.userName === DefaultAuthParam.DefaultUserName &&
-      this.userToken === DefaultAuthParam.DefaultToken
+      this.userName === DEFAULT_AUTH_PARAMS.DEFAULT_USER_NAME &&
+      this.userToken === DEFAULT_AUTH_PARAMS.DEFAULT_TOKEN
     ) {
       const storedToken = localStorage.getItem(StorageItem.Token);
       const storedUserName = localStorage.getItem(StorageItem.UserName);

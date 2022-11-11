@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SearchItem } from 'src/app/shared/models/search-item.model';
+import { VideoItem } from 'src/app/shared/models/video-item.model';
 
 @Component({
   selector: 'app-card-statistic',
@@ -8,5 +8,5 @@ import { SearchItem } from 'src/app/shared/models/search-item.model';
 })
 export class CardStatisticComponent {
   @Input()
-  video!: SearchItem;
+  video!: VideoItem;
 }

@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
-import { SearchItem } from 'src/app/shared/models/search-item.model';
+import { VideoItem } from 'src/app/shared/models/video-item.model';
 
 const startDate = Date.parse('01.01.1997');
 const dateMap = {
@@ -19,7 +19,7 @@ enum StatusClass {
 })
 export class DateStatusDirective implements OnInit {
   @Input()
-  video!: SearchItem;
+  video!: VideoItem;
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
 
