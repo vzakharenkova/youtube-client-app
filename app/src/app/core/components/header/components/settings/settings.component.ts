@@ -8,17 +8,17 @@ import { SearchService } from 'src/app/youtube/services/search.service';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent {
-  sortTerm = '';
+  public sortingTypeEnum = SortingType;
 
-  sortingTypeEnum = SortingType;
+  private sortingOrder: SortingOrder | null = null;
 
-  sortingOrder: SortingOrder | null = null;
+  private sortingType: SortingType | null = null;
 
-  sortingType: SortingType | null = null;
+  public sortTerm!: string;
 
   constructor(private readonly searchService: SearchService) {}
 
-  onSortClick(by: SortingType) {
+  public onSortClick(by: SortingType) {
     if (this.sortingType === null || this.sortingType !== by) {
       this.sortingOrder = SortingOrder.Up;
     } else if (this.sortingOrder === SortingOrder.Up) {
@@ -29,12 +29,10 @@ export class SettingsComponent {
     this.sortingType = by;
 
     this.searchService.changeSortingCriteria(this.sortingType, this.sortingOrder);
-    this.searchService.changeVideos(this.searchService.videos);
   }
 
-  onChange(str: string) {
+  public onChange(str: string) {
     this.sortTerm = str;
     this.searchService.changeSortTerm(this.sortTerm);
-    this.searchService.changeVideos(this.searchService.videos);
   }
 }

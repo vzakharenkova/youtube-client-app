@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,10 +17,15 @@ import { SettingsComponent } from './core/components/header/components/settings/
 import { HeaderComponent } from './core/components/header/header/header.component';
 import { ErrorModule } from './error/error/error.module';
 
-import { FilterPipe } from './youtube/pipes/filter.pipe';
 import { YoutubeModule } from './youtube/youtube.module';
 import { ButtonModule } from './shared/components/button/button.module';
 import { SearchInterceptorService } from './youtube/services/search-Interceptor-service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { reducer } from './redux/reducers/app.reducer';
 
 @NgModule({
   declarations: [
@@ -30,11 +35,11 @@ import { SearchInterceptorService } from './youtube/services/search-Interceptor-
     SettingsComponent,
     LoginInfoComponent,
     SearchInputComponent,
-    FilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     HttpClientModule,
     YoutubeModule,
     AuthorizationModule,
@@ -44,6 +49,11 @@ import { SearchInterceptorService } from './youtube/services/search-Interceptor-
     MatButtonModule,
     ButtonModule,
     FormsModule,
+
+    StoreModule.forRoot({ videoList: reducer }),
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot(),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   exports: [],
 

@@ -18,9 +18,8 @@ export class HeaderComponent {
   }
 
   public goToLoginPage() {
-    if (this.authService.getUserData()) {
-      this.authService.setUserData(false);
+    if (!this.authService.userToken.length) {
+      this.router.navigateByUrl(NavRoute.Login);
     }
-    this.router.navigateByUrl(NavRoute.Login);
   }
 }

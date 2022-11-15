@@ -1,0 +1,14 @@
+@import 'src/app/shared/shared.scss';
+
+:host {
+  & ::ng-deep .mat-progress-spinner circle,
+  .mat-spinner circle {
+    stroke: $blue;
+  }
+
+  & mat-spinner {
+    margin: 30vh auto;
+    grid-column-start: 1;
+    grid-column-end: 5;
+  }
+}
