@@ -1,0 +1,9 @@
+<div class="search-result">
+  <mat-spinner *ngIf="(isLoading | async) === true"></mat-spinner>
+  <ng-container *ngIf="(isLoading | async) === false"
+    ><app-search-card
+      *ngFor="let video of videoResult | filter: filterCriteria; trackBy: identify"
+      [video]="video"
+    ></app-search-card
+  ></ng-container>
+</div>

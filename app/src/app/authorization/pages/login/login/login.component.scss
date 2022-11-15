@@ -1,0 +1,97 @@
+@import 'src/app/shared/shared.scss';
+
+:host {
+  .login {
+    width: 350px;
+    height: fit-content;
+    margin: 5% auto;
+    background-color: $light-grey;
+    border-radius: 5px;
+    padding: 30px 25px;
+
+    .form_title {
+      font-weight: 700;
+      font-size: 180%;
+      line-height: 21px;
+      margin-bottom: 25px;
+    }
+
+    .form {
+      margin-bottom: 10px;
+
+      .input_field {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+
+        .label {
+          color: $dark-grey;
+          font-size: 90%;
+        }
+
+        .input {
+          box-sizing: border-box;
+          background-color: $grey;
+          outline: none;
+          border: none;
+          height: 40px;
+          padding: 10px;
+          border-radius: 5px;
+        }
+        .error_msg {
+          color: $red;
+          margin-top: 3px;
+          font-size: 10px;
+
+          .recs_list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+
+    .btn_field {
+      margin-top: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .link_btn {
+        margin-right: 20px;
+        line-height: 14px;
+        font-size: 14px;
+        color: $blue;
+        text-decoration: underline;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .submit_btn {
+        color: $white;
+        line-height: 14px;
+        border: none;
+        background-color: $blue;
+        border-radius: 4px;
+        padding: 10px 35px;
+        cursor: pointer;
+        transition: $btn_transition;
+        &:enabled:hover {
+          background-color: $blue_hover;
+        }
+        &:enabled:active {
+          background-color: $blue_hover;
+          font-size: 12px;
+        }
+        &:disabled {
+          color: $light-grey;
+          background-color: $blue_hover;
+          cursor: default;
+        }
+      }
+    }
+  }
+}
