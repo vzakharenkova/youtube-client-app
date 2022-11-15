@@ -17,7 +17,7 @@ export class SearchInputComponent implements OnInit {
       .pipe(
         debounceTime(800),
         distinctUntilChanged(),
-        filter((term: string) => term.trim().length >= 3),
+        filter((term: string) => term.trim().length >= 1),
       )
       .subscribe((term) => this.searchService.getVideos(term));
   }
